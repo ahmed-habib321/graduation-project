@@ -1,0 +1,819 @@
+\section{Fractional Differentiation}
+
+One might assume that fractional differentiation can be 
+accomplished by assuming that $\displaystyle \dv[n]{}{x} = I^{-n} $
+but this doesn't work because the gamma doesn't 
+actually extend to ALL the real numbers. 
+\\
+Gamma is actually undefined for non-positive integer inputs, 
+so we wouldn't be able to plug in $n = -1$ into gamma to compute 
+a derivative using the Fractional Integral formula (2.3).
+\\
+But even for fractional negative orders like $\displaystyle \alpha = -\frac{1}{2}$,
+it turns out the integral expression becomes 
+divergent, since an integral of the form $\displaystyle t^{(\alpha-1)}$ is divergent 
+near $t = 0$ for non-positive values of $\alpha$
+
+\subsection{Riemann-Liouville Fractional Derivative}
+We know that from classical calculus integer order derivatives 
+and integrals they're supposed to be inverses of each other, 
+and should cancel each other out.
+
+i.e $\forall n > 0 , n \in \mathbb{Z}^+$ the $ n^{\text{th}} $ derivative of the $ n^{\text{th}} $ integral 
+is the function itself (The First Fundamental Theorem of Calculus)
+\[
+    \dv[n]{}{t} I^{n} f(t) = f(t)    
+\]
+
+So we can use this formula indirectly to compute a half-derivative 
+by say first compute a half-integral and then taking the 
+ordinary whole derivative of that 
+
+Basically using the fractional integral to get us some kind 
+of fractional order then using ordinary derivatives to sort 
+of "lower" that order to where we actually want it. 
+
+This technique is called the Riemann-Liouville fractional derivative
+\vspace*{.2cm}
+\begin{definition}[Riemann-Liouville Fractional Derivative]
+    Let $\alpha>0$ for a positive integer $m$ such that $\alpha \in [m-1,m]$ we define the Riemann-Liouville 
+    fractional derivative of order $\alpha$ by 
+    \begin{equation}
+        D^{\alpha} f(t) = \dv[m]{}{t} I^{m-\alpha} f(t)
+    \end{equation}
+    And by using the Riemann-Liouville fractional integration formula (2.3) we can 
+    rewrite a formula for the fractional derivative as follows 
+    \begin{equation}
+        D^{\alpha} f(t) =  \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{0}^{t} (t-s)^{m - \alpha -1} \hquad f(s) \hquad ds
+    \end{equation}
+    When $\alpha$ is equal to 0.5 we call this a semi-derivative 
+\end{definition}
+\begin{example}
+    Evaluate $D^{\alpha}(f(t))$ where $f(t) = t^n$ , $n>-1$
+
+    \textit{ \textbf{Sol.} }
+    \begin{align*}
+        D^{\alpha} (t^n) &=  \dv[m]{}{t}\left( I^{m-\alpha} (t^n) \right)
+        \intertext{And we know that}
+        I^{m-\alpha} (t^n) &=  \left[t^{n+\alpha}\frac{\Gamma{(n+1)} } {\Gamma{(n+\alpha+1)} }\right]_{\alpha = m-\alpha}
+        \\
+        \therefore \dv[m]{}{t}\left( t^{n+m-\alpha}\frac{\Gamma{(n+1)} } {\Gamma{(n+1+m-\alpha)} } \right) &=  \frac{\Gamma{(n+1)} } {\Gamma{(n+1+m-\alpha)} }  \dv[m]{}{t}t^{n+m-\alpha}
+        \\
+        &=  \frac{\Gamma{(n+1)} } {\Gamma{(n+1+m-\alpha)} }  \frac{\Gamma{(n+1+m-\alpha)} }{\Gamma{(n+1+m-\alpha-m)} }  t^{n-\alpha}
+        \\
+        &= t^{n-\alpha}\frac{\Gamma{(n+1)} } {\Gamma{(n-\alpha+1)} }
+    \end{align*}
+\end{example}
+\begin{example}
+    Evaluate $D^{\alpha}(t^n)$ when $n=\alpha$ and when $n=\alpha-k$ for $k=1,2,3,\dots$
+
+    \textit{ \textbf{Sol.} }
+    \[
+        D^{\alpha} (t^n) =  t^{n-\alpha}\frac{\Gamma{(n+1)} } {\Gamma{(n-\alpha+1)} }    
+    \]
+    At $n=\alpha$
+    \[
+        D^{\alpha} (t^\alpha) =  t^{\alpha-\alpha}\frac{\Gamma(\alpha+1) } {\Gamma{(\alpha-\alpha+1)} } = \Gamma(\alpha+1)
+    \]
+    At $n=\alpha-k$
+    \[
+        D^{\alpha} (t^{\alpha-k}) =  t^{\alpha-k-\alpha}\frac{\Gamma(\alpha-k+1) } {\Gamma{(\alpha-k-\alpha+1)} } = \frac{\Gamma(\alpha-k+1) } {t^k\Gamma{(1-k)}}
+    \]
+    We know that $\Gamma(x)$ maps non-positive integer numbers to $\{\infty,-\infty\}$ 
+    
+    Thus for $k=1,2,3,\dots,m-1$
+    \begin{equation}
+        D^{\alpha} (t^{\alpha-k}) = 0
+    \end{equation}
+    That for $k<m$ to make sure that $\Gamma(\alpha-k+1)$ is not $\{\infty,-\infty\}$ 
+\end{example}
+\subsection{Caputo Fractional Derivative}
+\begin{figure*}[b]
+    \begin{minipage}[h]{\textwidth}
+        \begin{enrichment}{Michele Caputo}{Chars/Caputo.jpg}{2.4}{.8}{.17}
+            Professor Michele Caputo is a distinguished mathematician known for his contributions to the field of 
+            fractional calculus, particularly his creation of the Caputo derivative$.$ 
+            His work has significantly advanced 
+            our understanding of fractional calculus and its applications$.$
+            With a career marked by innovation and scholarly excellence, 
+            Caputo has established himself as a leading authority in the mathematical community
+        \end{enrichment} 
+    \end{minipage}
+\end{figure*}
+Someone might say instead of taking the fractional integral of order $m-\alpha$ for a function then differentiate it $m-times$
+we can differentiate it $m-times$ first then taking the fractional integral of order $m-\alpha$ for it 
+\\
+This what Prof$.$ Michele Caputo did in 1967 when he introduced
+the Caputo fractional derivative definition
+but this alternative definition doesn't always give the same results as the original
+\vspace*{.2cm}
+\begin{definition}[Caputo Fractional Derivative]
+    Let $\alpha>0 \quad,\quad m-1<\alpha<m$ , $m \in \mathbb{N}^+ $ Caputo Fractional Derivative is defined by    
+    \begin{equation}
+        \leftindex[I]^C{D^\alpha} f(t) = I^{m-\alpha} \dv[m]{}{t} f(t) =  \frac{1}{\Gamma(m-\alpha)} \int_{0}^{t} (t-s)^{m - \alpha -1}\dv[m]{f(s)}{s} \hquad ds
+    \end{equation}
+\end{definition}
+\begin{example}
+    Evaluate $D^{\alpha}(f(t))$ where $f(t) = t^n$ and $n>m-1 \quad,\quad n \in \mathbb{R}$
+    
+    \textit{ \textbf{Sol.} }
+    \begin{align*}
+        \leftindex[I]^C {D^{\alpha}} (t^n) &=  I^{m-\alpha}\left[\dv[m]{}{t} t^n \right] =  I^{m-\alpha} \left[ t^{n-m}\frac{\Gamma{(n+1)} } {\Gamma{(n-m+1)} } \right]
+        \\
+        &=  \frac{\Gamma{(n+1)} } {\Gamma{(n-m+1)} } \left[ \frac{\Gamma{(n-m+1)}}{\Gamma{(n+1-m+m-\alpha)} } t^{n-m+m-\alpha} \right]
+        \\
+        &=  \frac{\Gamma{(n+1)} }{\Gamma{(n+1-\alpha)} } t^{n-\alpha}
+    \end{align*}
+    If $n<m-1 \quad,\quad n \in \mathbb{N}$
+    \begin{equation}
+        \leftindex[I]^C {D^{\alpha}} (t^n) =  I^{m-\alpha}\left[\dv[m]{}{t} t^n \right]=  I^{m-\alpha}\left[0\right]=0    
+    \end{equation}
+\end{example}
+\subsection{The Differences And Properties Of Riemann-Liouville And Caputo Derivative}
+\textcolor{theme}{1.}\textbf{ Restrictions On The Order}
+
+\textcolor{blue}{In Riemann-Liouville} For $\alpha \in [m-1,m]$ , $m$ can be any positive natural number we are not restricted to make it small as possible
+\[
+    D^{\frac{1}{2}} f(t) = \dv{}{t} I^{\frac{1}{2}} f(t) = \dv[5]{}{t} I^{4.5} f(t) =  D^{4.5} f(t) = D^{8.5} f(t) = \dots
+\]
+That's due to the (semi-group) property of the fractional integral
+\[
+            \dv[5]{}{t} I^{4.5} f(t)= \dv[5]{}{t} I^{4}I^{\frac{1}{2}} f(t)= \dv{}{t} I^{\frac{1}{2}} f(t) = D^{\frac{1}{2}} f(t) 
+\]
+\textcolor{orange}{In Caputo} This is not true with Caputo 
+\[
+    \leftindex[I]^C {D^{\frac{1}{2}}} f(t) =  I^{\frac{1}{2}} \dv{}{t} f(t) \neq I^{4.5} \dv[5]{}{t} f(t) \neq I^{8.5} \dv[9]{}{t} f(t)
+\]
+To show that let $f(t) = t^2$
+\[
+    \leftindex[I]^C {D^{\frac{1}{2}}} t^2 = I^{\frac{1}{2}} \dv{}{t} t^2 = I^{\frac{1}{2}} 2t
+\]
+\[
+    \leftindex[I]^C {D^{\frac{1}{2}}} t^2 = I^{\frac{5}{2}} \dv[3]{}{t} t^2 = I^{\frac{5}{2}} 0 = 0
+\]
+
+\textcolor{theme}{2.}\textbf{ Restrictions On The Function}
+
+\textcolor{blue}{In Riemann-Liouville} $f \in L_1[0,b]$ ((may exist even for some discontinuous functions))
+
+\textcolor{orange}{In Caputo} $f$ is differentiable and $f' \in L_1[0,b]$ ((at least $f \in AC[0,b]$))
+\begin{enrichment*}{Absolute Continuous Functions}
+    A function $f$ is said to be Absolute Continuous i.e $f \in AC^{n}[0,b]$ if it's defined on $[0,b]$ and have continuous derivatives up to order $(n-1)$ on $[0, b]$
+    and $f^{(n-1)}$ is absolutely continuous on $[0,b]$
+\end{enrichment*}
+
+
+
+\textcolor{theme}{3.}\textbf{ Linearity}
+
+\textcolor{blue}{In Riemann-Liouville} Let $a,b$ be constants
+\[
+    D^{\alpha} [a \hquad f(t) + b \hquad g(t)] =  a \hquad D^{\alpha}f(t) + b \hquad D^{\alpha}g(t)
+\]
+\textcolor{orange}{In Caputo} Let $a,b$ be constants
+\[
+    \leftindex[I]^C {D^{\alpha}} [a \hquad f(t) + b \hquad g(t)] =  a \hquad \leftindex[I]^C {D^{\alpha}} f(t) + b \hquad\leftindex[I]^C {D^{\alpha}} g(t)
+\]
+\textcolor{theme}{4.}\textbf{ Effect On Constant}
+
+\textcolor{blue}{In Riemann-Liouville}
+    \[
+        D^{\alpha} c = \frac{t^{-\alpha}}{\Gamma{(1-\alpha)} }
+    \]
+\textcolor{orange}{In Caputo} 
+    \[
+            \leftindex[I]^C {D^{\alpha}} c = I^{m-\alpha}\left[\dv[m]{}{t} c \right] = I^{m-\alpha}\left[0\right] = 0
+    \]
+    Which is most important difference between RL and Caputo and it consider an advantage for Caputo over RL and show us that 
+    \[
+        \leftindex[I]^C {D^{\alpha}} f(t) \neq D^{\alpha} f(t)
+    \]
+\newpage
+\textcolor{theme}{5.}\textbf{ Continuity With Respect To The Order Of Derivation}
+
+We naturally expect that $D_a^{\alpha} f(t)$ and $\leftindex[I]^C {D_a^{\alpha}} f(t)$ to be a continuous functions. It is clear that complications 
+may occur only at points which represent the integer-order derivatives. 
+
+Let $m-1 < \alpha < m$ and $f(t)$ has a sufficient number of continuous derivatives.
+
+\textcolor{blue}{In Riemann-Liouville}
+\begin{align*}
+    \lim_{\alpha \to m }D_a^{\alpha} f(t) &=  \lim_{\alpha \to m } \left\{\frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{a}^{t} (t-s)^{m - \alpha -1} \hquad f(s) \hquad ds    \right\}
+    \\
+    \intertext{Integrate by part $(m+1)-times$}
+    &=  \lim_{\alpha \to m } \dv[m]{}{t} \left[ \sum_{k=0}^{m}  \frac{(t-a)^{m+k-\alpha}f^{(k)}(a)}{\Gamma(m+k+1-\alpha)}
+    + \int_{a}^{t} \frac{(t-s)^{2m - \alpha}}{\Gamma(2m-\alpha+1)} \hquad f^{(m+1)}(s) \hquad ds\right]
+    \\
+    &=  \lim_{\alpha \to m } \left[ \sum_{k=0}^{m} \frac{(t-a)^{k-\alpha}f^{(k)}(a)}{\Gamma(k+1-\alpha)} 
+    + \int_{a}^{t} \frac{(t-s)^{m - \alpha}}{\Gamma(m-\alpha+1)} \hquad f^{(m+1)}(s) \hquad ds\right]
+    \intertext{All the summation terms except the last one will be zero due to the Gamma in the denominator which will be $\{-\infty,\infty\}$ when $\alpha$ is replaced by $m$}
+    &= f^{(m)}(a) + \int_{a}^{t} f^{(m+1)}(s) \hquad ds
+    \\
+    &= f^{(m)}(a) + f^{(m)}(t) - f^{(m)}(a) = f^{(m)}(t)
+\end{align*}
+This does not hold for points of the discontinuity of some derivative involved.
+
+\textcolor{orange}{In Caputo} 
+
+The calculation of the left limit is similar and even more easier
+\begin{align*}
+    \lim_{\alpha \to m^- } \leftindex[I]^C {D_a^{\alpha}} f(t) &=  \lim_{\alpha \to m^- } \left\{\frac{1}{\Gamma(m-\alpha)} \int_{a}^{t} (t-s)^{m - \alpha -1} \hquad f^{(m)}(s) \hquad ds    \right\}
+    \\
+    \intertext{Integrate by part}
+    &=  \lim_{\alpha \to m^- } \left[ \frac{(t-a)^{m-\alpha}f^{(m)}(a)}{\Gamma(m+1-\alpha)} 
+    + \int_{a}^{t} \frac{(t-s)^{m - \alpha}}{\Gamma(m-\alpha+1)} \hquad f^{(m+1)}(s) \hquad ds\right]
+    \\
+    &= f^{(m)}(a) + \int_{a}^{t} f^{(m+1)}(s) \hquad ds = f^{(m)}(t)
+\end{align*}
+The right limit for the Caputo derivative is as follows
+\[
+    \lim_{\alpha \to (m-1)^+ } \leftindex[I]^C {D_a^{\alpha}} f(t) =  \int_{a}^{t} f^{(m)}(s) \hquad ds = f^{(m-1)}(t) - f^{(m-1)}(a)
+\]
+This result destroys our hope in the continuity of the Caputo derivative with respect to $\alpha$. 
+The function $f(t)$ would have to fulfill $f^{(m-1)}(a) = 0$ and it seems like a very strong restriction.
+\\
+But, most functions used in fractional calculus satisfy this condition so it is not such
+a big complication.
+\\
+In addition we could expect this result because it coincides with one of the requirement
+for the Caputo derivative the zero value of all derivatives of a constant function.
+\newpage
+\textcolor{theme}{6.}\textbf{ Equivalence Of The Approaches}
+
+We impose $f(t)$ to be $(m-1)-times$ continuously differentiable and the $m^{\text{th}}$ derivative of $f(t)$ to be integrable. 
+\\
+We suppose as usual $\alpha > 0$, but $\alpha \neq m-1$
+\begin{align*}
+    D_a^\alpha f(t) &= \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{a}^{t} (t-s)^{m - \alpha -1} \hquad f(s) \hquad ds
+    \intertext{Integrate by part $m-times$}
+    &= \dv[m]{}{t} \left[ \sum_{k=0}^{m-1}  \frac{(t-a)^{m+k-\alpha}f^{(k)}(a)}{\Gamma(m+k+1-\alpha)} 
+    + \int_{a}^{t} \frac{(t-s)^{2m - \alpha-1}}{\Gamma(2m-\alpha)} \hquad f^{(m)}(s) \hquad ds\right]
+    \\
+    &= \sum_{k=0}^{m-1}  \frac{(t-a)^{k-\alpha}f^{(k)}(a)}{\Gamma(k+1-\alpha)} 
+    + \int_{a}^{t} \frac{(t-s)^{m - \alpha-1}}{\Gamma(m-\alpha)} \hquad f^{(m)}(s) \hquad ds
+    \\
+    &= \sum_{k=0}^{m-1}  \frac{(t-a)^{k-\alpha}f^{(k)}(a)}{\Gamma(k+1-\alpha)} 
+    + \leftindex[I]^C {D_{a}^{\alpha}} f(t)
+\end{align*}
+A more interesting situation occurs when $a \to -\infty$ because due to $k - \alpha < 0$ for all
+$k$, the power functions are zero for all values $\alpha$ and we obtain
+\[
+    D_{-\infty}^\alpha f(t) = \leftindex[I]^C {D_{-\infty}^{\alpha}} f(t)
+\]
+\textcolor{theme}{7.}\textbf{ Equivalence Of Functions Derivatives}
+
+\textcolor{blue}{In Riemann-Liouville}
+    \[
+        D^{\alpha} f(t) =  D^{\alpha} g(t) \Longleftrightarrow f(t) = g(t) + \sum_{k=1}^{m} C_k t^{\alpha-k}
+    \]
+\begin{proof}[Proof]
+    Let 
+    \begin{align*}
+        f(t) &= g(t) + \sum_{k=1}^{m} C_k t^{\alpha-k}    
+        \intertext{Take $D^{\alpha}$ for both sides}
+        D^{\alpha} f(t) &= D^{\alpha} g(t) + D^{\alpha} \sum_{k=1}^{m} C_k t^{\alpha-k}    
+        \\
+        &= D^{\alpha} g(t) + \sum_{k=1}^{m} C_k D^{\alpha} t^{\alpha-k}    
+        \intertext{From equation (3.3) we got that $D^{\alpha} t^{\alpha-k} = 0$ Thus }
+        D^{\alpha} f(t) &=  D^{\alpha} g(t)
+    \end{align*}
+    Conversely let 
+    \begin{align*}
+        D^{\alpha} f(t) &=  D^{\alpha} g(t)
+        \intertext{Take $I^{\alpha}$ for both sides}
+        f(t) &=  g(t) + H(t)
+        \\
+        f(t) &=  g(t) + \sum_{k=1}^{m} C_k t^{\alpha-k}    
+    \end{align*}
+\end{proof}
+\textcolor{orange}{In Caputo}
+    \[
+        \leftindex[I]^C {D^{\alpha}} f(t) =  \leftindex[I]^C {D^{\alpha}} g(t) \Longleftrightarrow f(t) = g(t) + \sum_{k=1}^{m} C_k t^{m-k}
+    \]
+\begin{proof}[Proof]
+    Let 
+    \begin{align*}
+        f(t) &= g(t) + \sum_{k=1}^{m} C_k t^{m-k}    
+        \intertext{Take $\leftindex[I]^C {D^{\alpha}}$ for both sides}
+        \leftindex[I]^C {D^{\alpha}} f(t) &= \leftindex[I]^C {D^{\alpha}} g(t) + \leftindex[I]^C {D^{\alpha}} \sum_{k=1}^{m} C_k t^{\alpha-k}    
+        \\
+        &= \leftindex[I]^C {D^{\alpha}} g(t) + \sum_{k=1}^{m} C_k \leftindex[I]^C {D^{\alpha}} t^{m-k}    
+        \intertext{From equation (3.5) we got that $\leftindex[I]^C {D^{\alpha}} t^{m-k} = 0$ Thus }
+        \leftindex[I]^C {D^{\alpha}} f(t) &=  \leftindex[I]^C {D^{\alpha}} g(t)
+    \end{align*}
+    Conversely let 
+    \begin{align*}
+        \leftindex[I]^C {D^{\alpha}} f(t) &=  \leftindex[I]^C {D^{\alpha}} g(t)
+        \intertext{Take $I^{\alpha}$ for both sides}
+        f(t) &=  g(t) + H(t)
+        \\
+        f(t) &=  g(t) + \sum_{k=1}^{m} C_k t^{m-k}    
+    \end{align*}
+\end{proof}
+\textcolor{theme}{8.}\textbf{ Effect Of Integer Derivative}
+
+For $k = 0,1,2,\dots$
+
+\textcolor{blue}{In Riemann-Liouville}
+\begin{align*}
+    \dv[k]{}{t} D^{\alpha} f(t) &=  \dv[k]{}{t} \dv[m]{}{t} I^{m-\alpha} f(t) 
+    \\
+    &= \dv[m+k]{}{t} I^{m-\alpha} f(t) 
+    \\
+    &= \dv[m+k]{}{t} I^{m+k-k-\alpha} f(t) = \dv[m+k]{}{t} I^{(m+k)-(\alpha+k)} f(t) 
+    \\
+    &= D^{\alpha+k} f(t)
+\end{align*}
+\textcolor{orange}{In Caputo} 
+\begin{align*}
+    \leftindex[I]^C {D^{\alpha}} \dv[k]{}{t}f(t) &= I^{m-\alpha}\dv[m]{}{t}\dv[k]{}{t} f(t) 
+    \\
+    &= I^{m-\alpha}\dv[m+k]{}{t} f(t) 
+    \\
+    &= I^{m+k-k-\alpha}\dv[m+k]{}{t} f(t) = I^{(m+k)-(\alpha+k)}\dv[m+k]{}{t} f(t) 
+    \\
+    &= \leftindex[I]^C {D^{\alpha+k}} f(t)
+\end{align*}
+\newpage
+
+\textcolor{theme}{9.}\textbf{ The Integral Of Derivative}
+
+\textcolor{orange}{In Caputo} 
+\begin{align}
+    \notag
+    I^{\alpha}\leftindex[I]^C {D^{\alpha}}f(t) & = I^{\alpha}\left[\frac{1}{\Gamma(m-\alpha)}\int_{0}^{t}(t-s)^{m-\alpha-1}\dv[m]{}{s}f(s) \hquad ds\right]
+    \\\notag
+                             & = \frac{1}{\Gamma(\alpha)\Gamma(m-\alpha)} \int_{0}^{t}(t-s)^{\alpha-1} \int_{0}^{s}(s-\theta)^{m-\alpha-1} \dv[m]{}{\theta} f(\theta) \hquad d\theta \hquad ds
+    \\
+                             & = \frac{1}{\Gamma(\alpha)\Gamma(m-\alpha)} \int_{0}^{t}\underbrace{\int_{\theta}^{t}(t-s)^{\alpha-1}(s-\theta)^{m-\alpha-1} ds}_J  \dv[m]{}{\theta} f(\theta) \hquad d\theta
+\end{align}
+Let's handle the inner integral first
+\begin{align*}
+    J & = \int_{\theta}^{t}(t-s)^{\alpha-1}(s-\theta)^{m-\alpha-1} \hquad ds
+    \intertext{
+        Substitute
+    \(
+    \begin{cases}
+        \displaystyle s-\theta = \eta
+        \\\\
+        \displaystyle ds = d\eta
+        \\\\
+        \displaystyle 0 \to t-\theta
+    \end{cases}
+    \)
+    }
+      & = \int_{0}^{t-\theta}(t-\theta-\eta)^{\alpha-1}(\eta)^{m-\alpha-1} \hquad d\eta
+    \\
+      & = (t-\theta)^{\alpha-1} \int_{0}^{t-\theta}(1-\frac{\eta}{t-\theta})^{\alpha-1}(\eta)^{m-\alpha-1} \hquad d\eta
+    \intertext{
+        Substitute
+    \(
+    \begin{cases}
+        \displaystyle \eta = (t-\theta)\xi
+        \\\\
+        \displaystyle d\eta = (t-\theta) \hquad d\xi
+        \\\\
+        \displaystyle 0 \to 1
+    \end{cases}
+    \)
+    }
+      & = (t-\theta)^{\alpha-1} \int_{0}^{1}(1-\xi)^{\alpha-1} (t-\theta)^{m-\alpha-1} \hquad \xi^{m-\alpha-1} \hquad (t-\theta)  \hquad  d\xi
+    \\
+      & = (t-\theta)^{\alpha+m-\alpha-1} \int_{0}^{1}(1-\xi)^{\alpha-1} \hquad \xi^{m-\alpha-1} \hquad d\xi 
+    \\
+      & = (t-\theta)^{m-1} \beta(\alpha,m-\alpha)
+\end{align*}
+Substitute in (3.6) we get that
+\begin{align*}
+    I^{\alpha}\leftindex[I]^C {D^{\alpha}} f(t) &= \frac{\beta(\alpha,m-\alpha)}{\Gamma(\alpha)\Gamma(m-\alpha)}\int_{0}^{t} (t-\theta)^{m-1} \dv[m]{}{\theta} f(\theta) \hquad d\theta
+    \\
+    &= \frac{1}{\Gamma(m)}\int_{0}^{t} (t-\theta)^{m-1} \dv[m]{}{\theta} f(\theta) \hquad d\theta
+    \intertext{Integrate by part $(m-1)-times$}
+    &= f(t) - \sum_{k=0}^{m-1}  \frac{t^{m-k-1}f^{(m-k-1)}(0)}{\Gamma(m-k)} 
+    \intertext{If we put $k = m-k-1$ the summation value will not change only it's order}
+    &= f(t) - \sum_{k=0}^{m-1}  \frac{t^{k}f^{(k)}(0)}{\Gamma(k+1)}  = f(t) - \sum_{k=0}^{m-1}  \frac{t^{k}}{k!}f^{(k)}(0)
+\end{align*}
+
+\textcolor{blue}{In Riemann-Liouville} 
+\\
+Using the Equivalence Of The Approaches relation
+\begin{align*}
+    I^{\alpha}D^{\alpha} f(t) &= I^{\alpha} \left[ \sum_{k=0}^{m-1}  \frac{t^{k-\alpha}f^{(k)}(0)}{\Gamma(k+1-\alpha)} + \leftindex[I]^C {D^{\alpha}} f(t) \right]
+    \\
+    &= \sum_{k=0}^{m-1}  \frac{f^{(k)}(0)}{\Gamma(k+1-\alpha)}I^{\alpha}t^{k-\alpha} + I^{\alpha}\leftindex[I]^C {D^{\alpha}} f(t)
+    \\
+    &= \sum_{k=0}^{m-1}  \frac{f^{(k)}(0)}{\Gamma(k+1-\alpha)}t^k \frac{\Gamma(k+1-\alpha)}{\Gamma(k+1)} + f(t) - \sum_{k=0}^{m-1}  \frac{t^{k}}{k!}f^{(k)}(0)
+    \\
+    &= \sum_{k=0}^{m-1}  \frac{t^{k}}{k!}f^{(k)}(0) + f(t) - \sum_{k=0}^{m-1}  \frac{t^{k}}{k!}f^{(k)}(0) = f(t)
+\end{align*}
+
+\textcolor{theme}{10.}\textbf{ The Interchange Of The Differentiation Operators}
+
+\textcolor{blue}{In Riemann-Liouville}
+\[
+    D_a^{k}\left(D_a^{\alpha} f(t)\right) = D_a^{\alpha} \left(D_a^{k} f(t)\right) = D_a^{\alpha+k} f(t)
+\]
+Is allowed under the conditions
+\[
+    f^{(i)}(a)=0 \quad,\quad i=0,1,2,\dots,k \quad,\quad k=0,1,2,\dots \quad,\quad m-1<\alpha<m
+\]
+\textcolor{orange}{In Caputo} 
+\[
+    \leftindex[I]^C {D_a^{k}} \left(\leftindex[I]^C {D_a^{\alpha}} f(t)\right) = 
+    \leftindex[I]^C {D_a^{\alpha}} \left(\leftindex[I]^C {D_a^{k}} f(t)\right) =
+    \leftindex[I]^C {D_a^{\alpha+k}} f(t)
+\]
+Is allowed under the conditions
+\[
+    f^{(i)}(a)=0 \quad,\quad i=m,m+1,\dots,k \quad,\quad k=0,1,2,\dots \quad,\quad m-1<\alpha<m
+\]
+Contrary to the RL approach in the case of the Caputo derivative there are no restrictions on the values 
+$f^{(i)}(a)$ for $i=0,1,2,\dots,m-1$
+
+\newpage
+\textcolor{theme}{11.}\textbf{ Non-Locality}
+
+Normally when we take first or second 
+derivatives the output of the derivative only depends on the 
+input we give it this is called locality i.e. $f^{(n)}(t)$
+only depends on $t$. now if we go back to the definition of a fractional derivative we 
+have constant $a$ at the bottom of the integral 
+\[
+    D_{a}^{\alpha} f(t) = \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{\textcolor{red}{\fbox{\textcolor{black}{$a$}}}}^{t} (t-s)^{m - \alpha -1} \hquad f(s) \hquad ds
+\]
+Thus the fractional derivative has Non-locality which means 
+that it's value at a point depends on the function values over an interval, 
+not just at that point.
+\\
+The next two examples will show the effect of this property
+\vspace*{-.4cm}
+\begin{example}
+    Evaluate $\displaystyle D_{0}^{\alpha} (E_{a,b}(\lambda t))$
+
+    \textit{ \textbf{Sol.} }
+    \begin{equation}
+        D_{0}^{\alpha} (E_{a,b}(\lambda t)) = D_{0}^{\alpha} \left(\sum_{k=0}^{\infty}\frac{{(\lambda t)}^k}{\Gamma(a k + b )}\right)
+    \end{equation}
+    Because the series in (3.7) is uniformly convergent we can interchange $D_{0}^{\alpha}$ with the summation
+    \[
+        D_{0}^{\alpha} (E_{a,b}(\lambda t)) = \sum_{k=0}^{\infty}\frac{D_{0}^{\alpha} ((\lambda t)^k)}{\Gamma(a k + b )} = \sum_{k=0}^{\infty}\frac{\lambda^k D_{0}^{\alpha} (t^k)}{\Gamma(a k + b )}
+    \]
+    And we know that 
+    \[
+        D_{0}^{\alpha} (t^n) = t^{n-\alpha}\frac{\Gamma{(n+1)} } {\Gamma{(n-\alpha+1)} }    
+    \]
+    Thus 
+    \[
+        D_{0}^{\alpha} (E_{a,b}(\lambda t)) = \sum_{k=0}^{\infty}\frac{\Gamma{(k+1)} } {\Gamma{(k-\alpha+1)} } \frac{(\lambda^k t^{k-\alpha})}{\Gamma(a k + b )} = t^{-\alpha} \sum_{k=0}^{\infty}\frac{\Gamma{(k+1)} } {\Gamma{(k-\alpha+1)} } \frac{({\lambda t})^k}{\Gamma(a k + b )}
+    \]
+    At $a,b = 1$ 
+    \begin{align*}
+        D_{0}^{\alpha} (E_{1,1}(\lambda t)) = D_{0}^{\alpha} (e^{\lambda t}) &= t^{-\alpha} \sum_{k=0}^{\infty}\frac{\Gamma{(k+1)} } {\Gamma{(k-\alpha+1)} } \frac{(\lambda t)^{k}}{\Gamma(k + 1 )}
+        \\
+        & = t^{-\alpha} \sum_{k=0}^{\infty} \frac{((\lambda t)^{k})}{\Gamma(k+1-\alpha)} = t^{-\alpha} (E_{1,1-\alpha}(\lambda t))
+    \end{align*}
+\end{example}
+\vspace*{-.6cm}
+\begin{example}
+    Evaluate $\displaystyle D_{-\infty}^{\alpha} (e^{\lambda t})$
+    
+    \textit{ \textbf{Sol.} }
+    \begin{align*}
+        D_{-\infty}^{\alpha} (e^{\lambda t}) &=  \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{-\infty}^{t} (t-s)^{m - \alpha -1}(e^{\lambda s}) \hquad ds    
+        \intertext{
+            Substitute
+    \(
+    \begin{cases}
+        \displaystyle \frac{\xi}{\lambda} = (t-s)
+        \\
+        \displaystyle d\xi = -\lambda \hquad ds
+        \\
+        \displaystyle \infty \to 0
+    \end{cases}
+    \)
+        }
+        &=  \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{\infty}^{0} \left(\frac{\xi}{\lambda}\right)^{m - \alpha -1}(e^{\lambda t - \xi}) \left(-\frac{1}{\lambda}\right) \hquad d\xi    
+        \\
+        &=\frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t} \left(\frac{1}{\lambda}\right)^{m - \alpha} e^{\lambda t} \int_{0}^{\infty} \xi^{m - \alpha -1}(e^{- \xi}) \hquad d\xi    
+        \\
+        &=\frac{\lambda^{\alpha-m}}{\Gamma(m-\alpha)} \dv[m]{}{t} e^{\lambda t} \hquad \Gamma(m-\alpha)
+        \\
+        &=\lambda^{\alpha-m} \lambda^{m} e^{\lambda t} = \lambda^{\alpha} e^{\lambda t}
+    \end{align*}
+\end{example}
+
+Advantages Of Nonlocality:
+\begin{enumerate}
+    \item Modeling Complex Phenomena : Fractional derivatives are useful Analyzing functions that not only depend on time for example some phenomenon in the real world have something called a memory effect which means that the current state not only depends on time but also in previous States Many physical systems exhibit such behaviors, including viscoelastic materials, anomalous diffusion, and certain types of signal processing. traditional differential equations have a hard time modeling phenomenon like this but fractional derivatives can make the task easier 
+    \item Anomalous Diffusion : They are also useful for describing anomalous diffusion phenomena, where the mean squared displacement of particles does not follow a linear relationship with time. Such phenomena are prevalent in complex systems like porous media, biological tissues, and turbulent flows.
+\end{enumerate}
+
+Disadvantages Of Nonlocality:
+\begin{enumerate}
+    \item Computational Challenges : Numerical approximation and computation of fractional derivatives can be computationally intensive and require specialized algorithms. This can pose challenges, especially when dealing with large-scale systems or real-time applications.
+    \item Interpretation Difficulty : Non-locality introduced by fractional derivatives can sometimes make it difficult to interpret the physical meaning of the derived equations. Understanding the behavior of systems described by fractional calculus may require a deeper conceptual grasp compared to classical systems.
+\end{enumerate}
+
+This raises the question of how exactly we can interpret fractional derivatives. 
+since they're non-local and are influenced by the function's behavior far away 
+from a given input point, they must represent something different 
+than the slope of a tangent line, which is all about measuring a 
+function's local behavior near a point.
+
+Despite ordinary derivatives and integrals having pretty 
+straightforward geometric and physical meanings, it seems no one 
+has come up with a truly satisfying, general interpretation of 
+the fractional operators, or at least not one that's widely 
+accepted.
+
+Trying too hard to interpret fractional calculus in 
+terms of ordinary calculus is probably like insisting on 
+interpreting the equation $\displaystyle e^{i\pi} = -1$ in terms 
+of repeated multiplication. $\underbrace{ee \dots ee}_{i\pi \hquad  times} = -1$
+
+Note that some familiar properties \textcolor{red}{Don't Work Anymore}
+
+\textcolor{red}{12.}\textbf{ The Chain Rule}
+\[
+    D f(g(t)) = f'(g(t))g'(t)
+\]
+\begin{proof}[Proof]
+    counter-example let $g(t) = t^2$ and $f(g)=g^2$ 
+    \\
+    If we use the chain rule
+    \[
+        D^\alpha f(g(t)) = D^\alpha g(t)^2 = g(t)^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }    D^\alpha g(t)
+    \]  
+    \[
+        D^\alpha g(t) = D^\alpha t^2 = t^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }   
+    \]
+    Thus
+    \[
+        D^\alpha f(g(t)) = t^{2(2-\alpha)}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }    t^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }  = t^{3(2-\alpha)}\left(\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} } \right)^2
+    \]
+    On the other hand if we apply the fractional derivative on the equivalent function $f(g(t)) = t^4$
+    \[
+        D^\alpha t^4 = t^{4-\alpha}\frac{\Gamma{(5)} } {\Gamma{(5-\alpha)} }   
+    \]  
+\end{proof}
+
+\newpage
+
+\textcolor{red}{13.}\textbf{ The Product Rule }
+\[
+    Df(t)g(t) = f'(t)g(t)+g'(t)f(t)
+\]
+\begin{proof}[Proof]
+    Counter example let $f(t)=t^2$ and $g(t) = t^2$ 
+    \\
+    If we use the Product rule
+    \[
+        D^\alpha f(t) = D^\alpha t^2 = t^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }   
+    \]  
+    \[
+        D^\alpha g(t) = D^\alpha t^2 = t^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }   
+    \]
+    Thus
+    \[
+        D^\alpha f(t)g(t) = t^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }  t^2 +  t^2 t^{2-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} } 
+        = 2 t^{4-\alpha}\frac{\Gamma{(3)} } {\Gamma{(3-\alpha)} }
+    \]
+    On the other hand if we apply the fractional derivative on the equivalent function $f(t)g(t) = t^4$
+    \[
+        D^\alpha t^4 = t^{4-\alpha}\frac{\Gamma{(5)} } {\Gamma{(5-\alpha)} }   
+    \]  
+\end{proof}
+\textcolor{red}{14.}\textbf{ Semi-Group Property}
+\[
+    D^m D^n f(t) = D^n D^m f(t) =  D^{m+n} f(t)
+\]
+\begin{proof}[Proof]
+    Counter example let $f(t)=t^\alpha$ and $m=\alpha$ , $n=\alpha+1$
+    \begin{align*}
+        D^{\alpha}D^{\alpha+1} f(t) &= D^{\alpha}D^{\alpha+1} t^\alpha 
+        \\
+        &= D^{\alpha} D^{\alpha+1} t^{(\alpha+1)-1} 
+        \\
+        &= D^{\alpha} 0 = 0
+    \end{align*}
+    Now if we change it's sequence
+    \begin{align*}
+        D^{\alpha+1}D^{\alpha} f(t) &= D^{\alpha+1}D^{\alpha} t^{\alpha} 
+        \\
+        &= D^{\alpha+1} \Gamma(1+\alpha) 
+        \\
+        &= \Gamma(1+\alpha) D^{\alpha+1} t^0 
+        \\
+        &= \Gamma(1+\alpha) t^{-\alpha-1}\frac{\Gamma{(1)} } {\Gamma{(-\alpha)} }
+        \\
+        &= t^{-\alpha-1}\frac{\Gamma(1+\alpha)} {\Gamma{(-\alpha)} }
+    \end{align*}
+    And if we apply $D^{\alpha+\alpha+1} = D^{2\alpha+1}$
+    \begin{align*}
+        D^{2\alpha+1} f(t) &= D^{2\alpha+1} t^{\alpha} 
+        \\
+        &= t^{-1-\alpha}\frac{\Gamma{(1+\alpha)}}{\Gamma{(1+\alpha-2\alpha-1)}} = t^{-1-\alpha}\frac{\Gamma{(1+\alpha)}}{\Gamma{(-\alpha)}}
+    \end{align*}
+\end{proof}
+\newpage
+\subsection{The Motivation For Caputo Derivative}
+The fractional differentiation of the Riemann Liouville type played an 
+important role in the development of the theory of fractional derivatives 
+and integrals and for it's applications in pure mathematics (solution of integer-order differential equations,
+definitions of new function classes, summation of series, $\dots$)
+
+However, the demands of modern technology require a certain revision of the 
+well-established pure mathematical approach. There have appeared a number of works, 
+especially in the theory of viscoelasticity and in hereditary solid mechanics, 
+where fractional derivatives are used for a better description of material properties. 
+mathematical modeling based on enhanced rheological models naturally leads to differential equations
+of fractional order and to the necessity of the formulation of initial conditions to such equations.
+
+Applied problems require definitions of fractional derivatives allowing
+the utilization of physically interpret-able initial conditions, which contain
+$f(a), f'(a),\dots$
+
+Unfortunately. the Riemann-Liouville approach leads to initial conditions 
+containing the limit values of the Riemann-Liouville fractional
+derivatives at the lower terminal $t=a$, for example
+\begin{align*}
+    \lim_{t \to a } D^{\alpha-1} f(t) &= \beta_1
+    \\
+    \lim_{t \to a } D^{\alpha-2} f(t) &= \beta_2
+    \\
+    \vdots
+    \\
+    \lim_{t \to a } D^{\alpha-m} f(t) &= \beta_m
+\end{align*}
+Where $\beta_k$ for $k = 1,2,\dots,m$ are given constants.
+In spite of the fact that initial value problems with such initial conditions 
+can be successfully solved mathematically their solutions are practically
+useless, because there is no known physical interpretation for such types
+of initial conditions.
+
+Here we observe a conflict between the well-established and polished
+mathematical theory and practical needs.
+A certain solution to this conflict was proposed by M. Caputo first
+in his paper and two years later in his book , and recently (in
+Banach spaces) by \textcolor{theme}{A.M.A.El-Sayed}.
+
+The main advantage of Caputo's approach is that the initial conditions for 
+fractional differential equations with Caputo derivatives take on the same 
+form as for differential equations
+\[
+    f^{(k)}(a) = \beta_k \quad,\quad k=0,1,2,\dots,m-1 
+\]
+Thus the Caputo derivative allows utilization of initial values 
+of classical integer-order derivatives with known physical
+interpretations (position,velocity,acceleration,$\dots$)
+
+It is very important to understand which type of definition of fractional derivative 
+(in other words, which type of initial conditions) must be used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% الفكرة هنا انه في ريمان الدالة بيكون متاثر عليها بتكامل درجته كسر ف مقدرش اطلع منها معلومات 
+% انما في كابوتو الدالة بتكون تحت تاثير تفاضل عادي ف اقدر اقول
+% التفاضل الاول الي هو السرعة بكذا عند البداية 
+% التفاضل الثاني الي هو التسارع بكذا عند البداية 
+% و هكذا 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \begin{figure*}[b]
+%     \begin{minipage}[h]{\textwidth}
+%         \begin{enrichment}{Ahmed M. A. El-Sayed}{Chars/AMA.jpg}{2.4}{.8}{.17}
+%             Professor Ahmed El-Sayed well known for his contributions to the field of 
+%             fractional calculus, particularly solving differential equation and 
+%             integral equations of fractional order in Banach space
+%         \end{enrichment} 
+%     \end{minipage}
+% \end{figure*}
+
+
+
+\newpage
+\begin{example}
+    Evaluate $\displaystyle D_{-\infty}^{\alpha} (sin(at))$
+
+    \textit{ \textbf{Sol.} }
+    \begin{align*}
+        D_{-\infty}^{\alpha} (sin(at)) &=  D_{-\infty}^{\alpha} \left(\frac{e^{iat}-e^{-iat}}{2i}\right)
+        \\
+        &= \frac{D_{-\infty}^{\alpha}(e^{iat})-D_{-\infty}^{\alpha}(e^{-iat})}{2i}
+        \\
+        &= \frac{(ia)^\alpha e^{iat} - (-ia)^\alpha e^{-iat}}{2i}
+        \\
+        &= a^\alpha \frac{e^{i\left(at+\frac{\alpha \pi}{2}\right)} - e^{-i\left(at+\frac{\alpha \pi}{2}\right)}}{2i} = a^\alpha sin\left(at+\frac{\alpha \pi}{2}\right)
+    \end{align*}
+    In the same manner 
+    \[
+        D_{-\infty}^{\alpha} (cos(at))  = a^\alpha cos\left(at+\frac{\alpha \pi}{2}\right)
+    \]
+\end{example}
+% \section{The space $I^\alpha\left(L_p[0,b]\right)$}
+
+% \leftindex[I]^C {D^{\alpha}}
+\begin{example}
+    Evaluate $\displaystyle \leftindex[I]^C {D^{\alpha}} (E_{a,b}(\lambda t))$
+
+    \textit{ \textbf{Sol.} }
+    \[
+        \leftindex[I]^C {D^{\alpha}} (E_{a,b}(\lambda t)) = \leftindex[I]^C {D^{\alpha}} \left(\sum_{k=0}^{\infty}\frac{{(\lambda t)}^k}{\Gamma(a k + b )}\right)
+    \]
+    Now because the series is uniformly convergent we can interchange the D operator with the summation
+    \[
+        \leftindex[I]^C {D^{\alpha}} (E_{a,b}(\lambda t)) = \sum_{k=0}^{\infty}\frac{\leftindex[I]^C {D^{\alpha}} ((\lambda t)^k)}{\Gamma(a k + b )} = \sum_{k=0}^{\infty}\frac{\lambda^k \leftindex[I]^C {D^{\alpha}} (t^k)}{\Gamma(a k + b )}
+    \]
+    And we know that
+    \[
+        \leftindex[I]^C {D^{\alpha}} (t^n)
+        \begin{cases}
+            \displaystyle 0 & k<m
+            \\
+            \displaystyle t^{n-\alpha}\frac{\Gamma{(n+1)} } {\Gamma{(n-\alpha+1)} }   & k \geq m
+        \end{cases}
+    \]
+    Thus 
+    \begin{align*}
+        \leftindex[I]^C {D^{\alpha}} (E_{a,b}(\lambda t)) &= \sum_{k=m}^{\infty}\frac{\Gamma{(k+1)} } {\Gamma{(k-\alpha+1)} } \frac{(\lambda^k t^{k-\alpha})}{\Gamma(a k + b )} 
+        \intertext{Substitute $k=m+k$}
+        &= \sum_{k=0}^{\infty}\frac{\Gamma{(m+k+1)} } {\Gamma{(m+k-\alpha+1)} } \frac{(\lambda^{m+k} t^{m+k-\alpha})}{\Gamma(a (m+k) + b )} 
+        \\
+        &= \lambda^{m}t^{m-\alpha} \sum_{k=0}^{\infty}\frac{\Gamma{(m+k+1)} } {\Gamma{(m+k-\alpha+1)} }  \frac{(\lambda t)^k}{\Gamma(a (m+k) + b )} 
+    \end{align*}
+    When $a,b = 1$ 
+    \begin{align*}
+        \leftindex[I]^C {D^{\alpha}} (E_{1,1}(\lambda t)) = \leftindex[I]^C {D^{\alpha}} (e^{\lambda t}) &= \lambda^{m}t^{m-\alpha} \sum_{k=0}^{\infty}\frac{\Gamma{(m+k+1)} } {\Gamma{(m+k-\alpha+1)} }  \frac{(\lambda t)^k}{\Gamma(m+k + 1 )} 
+        \\
+        & = \lambda^{m}t^{m-\alpha} \sum_{k=0}^{\infty}\frac{(\lambda t)^k} {\Gamma{(m+k-\alpha+1)} }  = \lambda^{m}t^{m-\alpha} (E_{1,1-\alpha+m}(\lambda t))
+    \end{align*}
+\end{example}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage 
+% \vspace*{\fill}
+%     \begin{center}
+%         {\fontsize{50pt}{30pt}\selectfont
+%         \textcolor{red}{The Space  \[I^\alpha\left(L_p[0,b]\right)\]}
+%         }
+%     \end{center}
+% \vspace*{\fill}
+% \newpage 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -1,0 +1,140 @@
+\documentclass[twoside]{article}
+
+
+\input{MyTools}
+\usepackage{fancyhdr}
+\usepackage{fontspec}
+\usepackage{physics}
+\newcommand{\hquad}{\,\,}
+\newcommand{\Blankpage}{\newpage \ \newpage}
+\newcommand{\hmasafa}{\hspace*{.25cm}}
+\newcommand{\vmasafa}{\vspace*{.25cm}}
+\tikzset{
+  oblique lines/.style={
+    pattern = north east lines,
+    pattern color = red,
+  }
+}
+\usepackage{multicol}
+% \newcommand{\DRL}[4][RL][0][t][\alpha]{\prescript{#1}{#2}{D_{#3}^{#4}}}
+\usepackage{ragged2e}
+\usepackage{mathtools,leftindex,tensor,mhchem}
+
+%\definecolor{cover}{RGB}{230, 194, 24}
+
+%blue
+%\definecolor{cover}{RGB}{51,215,213}
+
+%green
+%\definecolor{cover}{RGB}{51,215,153}
+
+%dark green
+%\definecolor{cover}{RGB}{51,215,103}
+
+\definecolor{cover}{RGB}{51,215,0}
+
+\definecolor{Golden}{RGB}{202, 184, 41}
+\definecolor{DarkGreen}{RGB}{125, 169, 98}
+\definecolor{orangered}{RGB}{233, 118, 86}
+\definecolor{skyblue}{RGB}{113, 188, 220}
+\newfontfamily\Acmefont{Acme-Regular}[
+        Path = fonts/Acme/,
+        Extension =.ttf
+]
+\newfontfamily\fancyfont{GreatVibes-Regular}[
+        Path = fonts/Great_Vibes/,
+        Extension =.ttf
+]
+\newfontfamily\handfont{PlaypenSans-ExtraBold}[
+        Path = fonts/Playpen_Sans/,
+        Extension =.ttf
+]
+\newfontfamily\Garamondfont{EBGaramond-Medium}[
+        Path = fonts/Garamond/,
+        Extension =.ttf
+] 
+\newfontfamily\HPfont{HP}[
+        Path = fonts/harryp/,
+        Extension =.ttf
+] 
+\numberwithin{equation}{section}
+
+% \pagestyle{fancy}
+% \fancyhf{}
+% \fancyhead[LO,RE]{\thepage}
+% \fancyhead[RO]{\leftmark}
+% \fancyhead[LE]{\rightmark}
+% \fancyfoot{\hrule}
+% \renewcommand{\sectionmark}[1]{\markboth{#1}{}}
+% \renewcommand{\subsectionmark}[1]{\markright{#1}}
+\usepackage{changepage}
+
+\begin{document}
+
+
+
+% \include{BookStarter(org)}      %The pages it the start
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\include{BookStarter copy}        % The pages it the start
+\include{Integration}             % Integration Part 
+\include{Derivative}              % Derivative Part 
+\include{Integral Transform}      % Integral Transform Part
+\include{Other Def}               % Other Def Part
+\include{FDE Copy}                % Fractional Differential Equations Part edited
+% \include{FDE}                     % Fractional Differential Equations Part
+\include{Apps}                    % Application Part
+\include{refs}                    % References Part 
+\include{BookEnd}                 % The pages in the End
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \include{BookBody}                % (working on) Part   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \begin{equation*}
+%         \label{eq:aaa} \tag{$\star$} \forall \epsilon
+% \end{equation*}
+% \begin{equation*}
+%         \label{eq:aab} \tag{5.25} \exists \delta
+% \end{equation*}
+% this is ref to equation (\ref{eq:aab})
+% \begin{example}
+%         \label{ex:aaa} solve 
+% \end{example}
+% this is ref to example (\ref{ex:aaa})
+% \begin{theorem}[convergent]
+%         \label{thm:aaa} 
+%         from (\ref{eq:aaa}) and (\ref{eq:aab}) then it's done
+% \end{theorem}
+% this is ref to theorem (\ref{thm:aaa})
+
+% \begin{center}
+%         \includegraphics[width = 5cm]{Chars/Cauchy.jpg}
+% \end{center}
+
+\end{document}

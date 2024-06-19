@@ -1,0 +1,54 @@
+\contentsline {section}{\numberline {1}Introduction}{1}{section.1}%
+\contentsline {section}{\numberline {2}Fractional Integral}{2}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Cauchy's Repeated Integration Formula}{2}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Riemann-Liouville Integral}{3}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Properties Of RL Integral}{7}{subsection.2.3}%
+\contentsline {section}{\numberline {3}Fractional Differentiation}{20}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Riemann-Liouville Fractional Derivative}{20}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Caputo Fractional Derivative}{21}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}The Differences And Properties Of Riemann-Liouville And Caputo Derivative}{22}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}The Motivation For Caputo Derivative}{31}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Integral Transformations}{33}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Laplace Transform}{33}{subsection.4.1}%
+\contentsline {subsubsection}{\numberline {4.1.1}Laplace Transform Of Riemann-Liouville Fractional Integral}{34}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\numberline {4.1.2}Laplace Transform Of Riemann-Liouville Fractional Derivative}{34}{subsubsection.4.1.2}%
+\contentsline {subsubsection}{\numberline {4.1.3}Laplace Transform Of Caputo Derivative}{35}{subsubsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.2}Fourier Transform}{36}{subsection.4.2}%
+\contentsline {subsubsection}{\numberline {4.2.1}Fourier Transform Of Riemann-Liouville Integral}{36}{subsubsection.4.2.1}%
+\contentsline {subsubsection}{\numberline {4.2.2}Fourier Transform Of Riemann-Liouville Derivative}{37}{subsubsection.4.2.2}%
+\contentsline {subsubsection}{\numberline {4.2.3}Fourier Transform Of Caputo Derivative}{37}{subsubsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.3}Mellin Transforms}{38}{subsection.4.3}%
+\contentsline {subsubsection}{\numberline {4.3.1}Mellin Transforms Of Riemann-Liouville Integral}{39}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\numberline {4.3.2}Mellin Transforms Of Riemann-Liouville Derivative}{40}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\numberline {4.3.3}Mellin Transforms Of Caputo Derivative}{41}{subsubsection.4.3.3}%
+\contentsline {section}{\numberline {5}Other Fractional Integral And Derivative Definitions}{42}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Riemann Liouville Integral Definitions}{42}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Riemann Liouville Derivative Definitions}{43}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Differ-Integral Operator}{43}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Fractional Derivative According To Fourier}{43}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}The Grünwald-Letnikov Fractional Derivative}{44}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}The Canavati Fractional Derivative}{44}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}The Marchaud Fractional Derivative}{44}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}The Riesz Fractional Integral And Derivative}{45}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}The Feller Fractional Integral And Derivative}{46}{subsection.5.9}%
+\contentsline {subsection}{\numberline {5.10}Hadamard Fractional Integral And Derivative}{46}{subsection.5.10}%
+\contentsline {subsection}{\numberline {5.11}Generalized Fractional Integration And Differentiation}{47}{subsection.5.11}%
+\contentsline {subsection}{\numberline {5.12}Kolwankar And Gangal (1994)}{48}{subsection.5.12}%
+\contentsline {subsection}{\numberline {5.13}The Gohar Fractional Integral And Derivative}{48}{subsection.5.13}%
+\contentsline {section}{\numberline {6}Fractional Differential Equations (FDEs)}{49}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Initial Value Problems For Single Term Equations}{49}{subsection.6.1}%
+\contentsline {subsubsection}{\numberline {6.1.1}Existence And Uniqueness Of Solutions}{50}{subsubsection.6.1.1}%
+\contentsline {subsubsection}{\numberline {6.1.2}Stability}{57}{subsubsection.6.1.2}%
+\contentsline {subsubsection}{\numberline {6.1.3}Separation Of Solutions}{57}{subsubsection.6.1.3}%
+\contentsline {subsection}{\numberline {6.2}Linear Fractional Differential Equations (LFDE)}{58}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Nonlinear Equations}{62}{subsection.6.3}%
+\contentsline {subsubsection}{\numberline {6.3.1}The Adomian Decomposition Method (ADM)}{62}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\numberline {6.3.2}Decomposition Of Nonlinear FDE}{65}{subsubsection.6.3.2}%
+\contentsline {subsection}{\numberline {6.4}Fractional Systems of Differential Equations}{66}{subsection.6.4}%
+\contentsline {section}{\numberline {7}Applications Of Fractional Calculus}{67}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Abel's Fractional Integral Equation Of Tautochrone}{67}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Viscoelasticity}{69}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Fractional Damped Motion}{70}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Fractional Diffusion Equations}{70}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Fractional Order Multipoles In Electromagnetism}{71}{subsection.7.5}%
+\contentsfinish 

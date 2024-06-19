@@ -1,0 +1,312 @@
+%----------------------------------------------------------------------------------------
+%	REQUIRED PACKAGES and commands
+%----------------------------------------------------------------------------------------
+\usepackage{amsmath,amsfonts,amssymb,amsthm} % For math equations, theorems, symbols, etc
+\usepackage{titlesec} % Allows customization of titles
+\usepackage{graphicx}        % Required for including pictures
+\usepackage{tikz} % Required for drawing custom shapes
+\usepackage{enumitem} % Customize lists
+\setlist{nolistsep} % Reduce spacing between bullet points and numbered lists
+\usepackage[hidelinks]{hyperref} % make a link between the titles in the table of content and the page of it
+\usepackage[a4paper, margin=1.2in]{geometry}
+\usepackage{blindtext}
+\usepackage[skip=9pt plus1pt, indent=0pt]{parskip}
+\usepackage{wrapfig}
+\usepackage{caption2}
+\usepackage{flexisym}
+\usepackage{comment}
+\usepackage[export]{adjustbox}
+\usepackage{tcolorbox} % make the enrichment box 
+\usepackage{mathrsfs}
+\usepackage{siunitx}	% allow to write the units in math mode
+\usepackage{eso-pic} % Required for specifying an image background in the title page
+\usepackage{mwe}
+\usepackage{booktabs} % Required for nicer horizontal rules in tables
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{xcolor}
+\hyphenpenalty=10000
+\definecolor{Solution}{RGB}{0, 135, 189} 
+\allowdisplaybreaks
+\usetikzlibrary{positioning,calc}
+\usetikzlibrary{patterns}
+\newcommand*\circled[1]{\tikz[baseline=(char.base)]{
+            \node[shape=circle,draw,inner sep=2pt] (char) {#1};}}
+\newcommand{\dquad}{\quad\quad}
+\newcommand{\tquad}{\quad\quad\quad}
+\newcommand{\fquad}{\quad\quad\quad\quad}
+
+
+
+%----------------------------------------------------------------------------------------
+%	PDF theme color
+%----------------------------------------------------------------------------------------
+
+% \definecolor{theme}{RGB}{13, 71, 161} % Define the color used for highlighting throughout the pdf
+% \definecolor{theme}{RGB}{101, 41, 198}
+% \definecolor{theme}{RGB}{45, 57, 89}
+% \definecolor{theme}{RGB}{0, 0, 150}
+\definecolor{theme}{RGB}{51,155,0}
+
+
+% \definecolor{theme}{RGB}{52, 151, 166}
+% \definecolor{theme}{RGB}{243, 102, 25}
+
+%\definecolor{theme}{RGB}{45, 57, 89}
+%\definecolor{theme}{RGB}{45, 57, 89}
+
+%----------------------------------------------------------------------------------------
+%	MAIN TABLE OF CONTENTS
+%----------------------------------------------------------------------------------------
+
+\usepackage{titletoc} % Required for manipulating the table of contents
+
+\contentsmargin{0cm} % Removes the default margin
+
+% section text styling
+\titlecontents{section}[1.25cm] % Indentation
+{\addvspace{5pt}\large\bfseries} % Spacing and font options for sections
+{\color{theme!70}\contentslabel[\Large\thecontentslabel]{1.25cm}\color{theme}} % section number
+{}  
+{\color{theme!70}\normalsize\bfseries\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+
+% Subsection text styling
+\titlecontents{subsection}[1.75cm] % Indentation
+{\addvspace{1pt}\small} % Spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
+{}
+{\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+[] 
+
+% Exclude subsubsection from table of contents
+\titlecontents{subsubsection}[2cm] % Indentation
+{\addvspace{1pt}\small} % Spacing and font options for subsections
+{\contentslabel[\thecontentslabel]{1.25cm}} % Subsection number
+{}
+{\;\titlerule*[.5pc]{.}\;\thecontentspage} % Page number
+[]  
+
+
+
+
+\newtheorem{notation}{Notation}[section]
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% dedicated to boxed/framed environements %%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{themenumbox}% % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\color{theme}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\color{theme}\thmname{#1}\nobreakspace\thmnumber{#2}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\textit\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+
+\newtheoremstyle{blacknumex}% Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% Body font
+{} % Indent amount
+{\small\bf}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small{\tiny\ensuremath{\blacksquare}}\nobreakspace\thmname{#1}\nobreakspace\thmnumber{#2}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\textit\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+\newtheoremstyle{blacknumbox} % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{\normalfont}% Body font
+{}% Indent amount
+{\small\bf}% Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\thmname{#1}\nobreakspace\thmnumber{#2}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\textit\bfseries---\nobreakspace#3.}}% Optional theorem note
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% dedicated to non-boxed/non-framed environements %%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newtheoremstyle{themenum}% % Theorem style name
+{5pt}% Space above
+{5pt}% Space below
+{\normalfont}% % Body font
+{}% Indent amount
+{\small\bf\color{theme}}% % Theorem head font
+{\;}% Punctuation after theorem head
+{0.25em}% Space after theorem head
+{\small\color{theme}\thmname{#1}\nobreakspace\thmnumber{#2}% Theorem text (e.g. Theorem 2.1)
+\thmnote{\nobreakspace\textit\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+
+\newtheoremstyle{enbox}% % Theorem style name
+{0pt}% Space above
+{0pt}% Space below
+{}
+{}
+{}
+{}
+{0.25em}
+{\small
+\thmnote{\nobreakspace\textit\bfseries\color{black}---\nobreakspace#3.}} % Optional theorem note
+\renewcommand{\qedsymbol}{$\blacksquare$}% Optional qed square
+
+
+\makeatother
+
+\newcounter{dummy}
+\numberwithin{dummy}{section}
+\theoremstyle{themenumbox}
+
+\newtheorem{theoremeT}[dummy]{Theorem}
+
+\newtheorem{lemma}[dummy]{Lemma}
+\newtheorem{observation}[dummy]{Observation}
+\newtheorem{result}[]{Result}
+\newtheorem{property}[]{Property}
+\newtheorem{proposition}[dummy]{Proposition}
+% \newtheorem{definition}[dummy]{Definition}
+\newtheorem{claim}[dummy]{Claim}
+\newtheorem{fact}[dummy]{Fact}
+\newtheorem{assumption}[dummy]{Assumption}
+
+\newtheorem{problem}{Problem}[section]
+% \newtheorem{exercise}{Exercise}[section]
+\theoremstyle{blacknumex}
+\newtheorem{exampleT}{Example}[subsection]
+\theoremstyle{blacknumbox}
+\newtheorem{vocabulary}{Vocabulary}[section]
+\newtheorem{definitionT}{Definition}[section]
+\newtheorem{corollaryT}[dummy]{Corollary}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	DEFINITION OF COLORED BOXES
+%----------------------------------------------------------------------------------------
+
+\RequirePackage[framemethod=default]{mdframed} % Required for creating the theorem, definition, exercise and corollary boxes
+
+% Theorem box
+\newmdenv[
+    skipabove=7pt,
+    skipbelow=7pt,
+    backgroundcolor=black!5,
+    linecolor=theme,
+    innerleftmargin=5pt,
+    innerrightmargin=5pt,
+    innertopmargin=5pt,
+    leftmargin=0cm,
+    rightmargin=0cm,
+    innerbottommargin=5pt]{tBox}
+
+% Exercise box	  
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+backgroundcolor=theme!10,
+linecolor=theme,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+innerbottommargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt]{eBox}	
+
+% Definition box
+\newmdenv[
+skipabove=3pt,
+skipbelow=3pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=theme,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=0pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=0pt]{dBox}	
+
+% Corollary box
+\newmdenv[skipabove=7pt,
+skipbelow=7pt,
+rightline=false,
+leftline=true,
+topline=false,
+bottomline=false,
+linecolor=gray,
+backgroundcolor=black!5,
+innerleftmargin=5pt,
+innerrightmargin=5pt,
+innertopmargin=5pt,
+leftmargin=0cm,
+rightmargin=0cm,
+linewidth=4pt,
+innerbottommargin=5pt]{cBox}
+
+% Creates an environment for each type of theorem and assigns it a theorem text style from the "Theorem Styles" section above and a colored box from above
+\newenvironment{theorem}{\begin{tBox}\begin{theoremeT}}{\end{theoremeT}\end{tBox}}
+\newenvironment{exercise}{\begin{eBox}\begin{exerciseT}}{\hfill{\color{theme}\tiny\ensuremath{\blacksquare}}\end{exerciseT}\end{eBox}}				  
+\newenvironment{definition}{\begin{dBox}\begin{definitionT}}{\end{definitionT}\end{dBox}}	
+\newenvironment{example}{\begin{exampleT}}{\hfill{\tiny\ensuremath{\blacksquare}}\end{exampleT}}		
+\newenvironment{corollary}{\begin{cBox}\begin{corollaryT}}{\end{corollaryT}\end{cBox}}	
+\newenvironment{enrichment*}[1]{\begin{tcolorbox}[colback=theme!5!white,colframe=theme!50!black,title=#1]}{\end{tcolorbox}}
+
+
+
+\newenvironment{enrichment}[5]{
+    \def\Title{#1}    
+    \def\imagepath{#2}
+    \def\imagewidth{#3}
+    \def\textspace{#4}
+    \def\imagespace{#5}
+    \begin{tcolorbox}[colback=theme!5!white,colframe=theme!50!black,title=\Title]
+        \begin{minipage}[t]{\textspace\textwidth}
+        }{
+        \end{minipage}
+        \hfill
+        \begin{minipage}[t]{\imagespace\textwidth}
+            \includegraphics[width=\imagewidth cm,valign=t]{\imagepath}
+        \end{minipage}
+    \end{tcolorbox}
+}
+
+
+%----------------------------------------------------------------------------------------
+%	SECTION NUMBERING IN THE MARGIN
+%----------------------------------------------------------------------------------------
+
+\makeatletter
+\renewcommand{\@seccntformat}[1]{\llap{\textcolor{theme}{\csname the#1\endcsname}\hspace{1em}}}                    
+\renewcommand{\section}{\@startsection{section}{1}{\z@}
+{-4ex \@plus -1ex \@minus -.4ex}
+{1ex \@plus.2ex }
+{\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection {subsection}{2}{\z@}
+{-3ex \@plus -0.1ex \@minus -.4ex}
+{0.5ex \@plus.2ex }
+{\normalfont\bfseries}}
+\renewcommand{\subsubsection}{\@startsection {subsubsection}{3}{\z@}
+{-2ex \@plus -0.1ex \@minus -.2ex}
+{.2ex \@plus.2ex }
+{\normalfont\small\bfseries}}                        
+\renewcommand\paragraph{\@startsection{paragraph}{4}{\z@}
+{-2ex \@plus-.2ex \@minus .2ex}
+{.1ex}
+{\normalfont\small\bfseries}}
+
+
+
+

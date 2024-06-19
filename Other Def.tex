@@ -1,0 +1,404 @@
+\section{Other Fractional Integral And Derivative Definitions}
+In the previous sections we only talked about RL and Caputo Definition of Fractional Integral And Derivative
+but there is a lot of other Definitions That we will show some of them now 
+
+\subsection{Riemann Liouville Integral Definitions}
+Until now, we considered the fractional integral and derivatives with fixed
+lower terminal $a$ and moving upper terminal $t$. 
+Moreover we supposed that $a < t$. However, it is also possible to consider fractional integral and derivatives
+with moving lower terminal $t$ and fixed upper terminal $b$.
+Let us suppose that the function $f(t)$ is defined in the interval $[a, b]$
+\begin{enumerate}
+        \item The Left Riemann Liouville Fractional Integral
+        \begin{equation}
+            I_{a+}^{\alpha} f(t) = \frac{1}{\Gamma(\alpha)}\int_{a}^{t} (t-s)^{\alpha-1}f(s) \hquad ds
+        \end{equation}
+        \item The Right Riemann Liouville Fractional Integral
+        \begin{equation}
+            I_{b-}^{\alpha} f(t) = \frac{1}{\Gamma(\alpha)}\int_{t}^{b} (s-t)^{\alpha-1}f(s) \hquad ds
+        \end{equation}
+        \item The Liouville Fractional Integral
+        We define the fractional integral according to Liouville by setting $a = -\infty$ , $b = +\infty$
+        \begin{equation}
+            \leftindex[I]^L {I_{+}^{\alpha}} f(t) = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^{t} (t-s)^{\alpha-1}f(s) \hquad ds
+        \end{equation}
+        \begin{equation}
+            \leftindex[I]^L {I_{-}^{\alpha}} f(t) = \frac{1}{\Gamma(\alpha)}\int_{t}^{+\infty} (s-t)^{\alpha-1}f(s) \hquad ds
+        \end{equation}
+        \item The Riemann Fractional Integral
+        We define the fractional integral according to Riemann by setting $a,b = 0$
+        \begin{equation}
+            \leftindex[I]^R {I_{+}^{\alpha}} f(t) = \frac{1}{\Gamma(\alpha)}\int_{0}^{t} (t-s)^{\alpha-1}f(s) \hquad ds
+        \end{equation}
+        \begin{equation}
+            \leftindex[I]^R {I_{-}^{\alpha}} = \frac{1}{\Gamma(\alpha)}\int_{t}^{0} (s-t)^{\alpha-1}f(s) \hquad ds
+        \end{equation}
+\end{enumerate}
+This some examples to show the difference Between The Liouville sense and Riemann sense
+\begin{align*}
+    \leftindex[I]^L {I_{+}^{\alpha}} (e^{kt}) &= k^{-\alpha}e^{kt} && k,t>0
+    \\
+    \leftindex[I]^L {I_{-}^{\alpha}} (e^{kt}) &= (-k)^{-\alpha}e^{kt} && k<0
+    \\
+    \leftindex[I]^R {I_{+}^{\alpha}} (e^{kt}) &= (k)^{-\alpha}e^{kt} \left( 1- \frac{\gamma(\alpha,kt)}{\Gamma(\alpha)} \right) && t>0
+    \\
+    \leftindex[I]^R {I_{-}^{\alpha}} (e^{kt}) &= (-k)^{-\alpha}e^{kt} \left( 1- \frac{\gamma(\alpha,kt)}{\Gamma(\alpha)} \right) && t<0
+\end{align*}
+Where $\gamma(\alpha,kt)$ is the incomplete gamma function
+\begin{enrichment*}{Incomplete Gamma Function}
+    The upper and lower incomplete gamma functions are special functions defined by
+    
+    The upper incomplete gamma function
+    \[
+    \Gamma(s,x) = \int_{x}^{\infty} t^{s-1} e^{-t} dt
+    \]
+    The lower incomplete gamma function
+    \[
+    \gamma(s,x) = \int_{0}^{x} t^{s-1} e^{-t} dt
+    \]
+\end{enrichment*}
+The notions of left and right fractional derivatives can be considered
+from the physical and the mathematical viewpoints.
+Sometimes the following physical interpretation of the left and right
+derivative can be helpful.
+Let us suppose that $t$ is time and the function $f(t)$ describes a certain
+dynamical process developing in time. If we take $s < t$, where $t$ is the 
+present moment, then the state $f(s)$ of the process $f$ belongs to the past
+of this process and if we take $s > t$, then $f(s)$ belongs to the future of the process $f$.
+
+\subsection{Riemann Liouville Derivative Definitions}
+For the simple case $0 < \alpha < 1$ we obtain
+\begin{enumerate}
+        \item The Liouville Fractional Derivatives
+        \begin{equation}
+            \leftindex[I]^L {D_{+}^{\alpha}} f(t) = \dv{}{t} \leftindex[I]^L {I_{+}^{1-\alpha}} f(t) = \frac{1}{\Gamma(1-\alpha)} \dv{}{t} \int_{-\infty}^{t} (t-s)^{-\alpha}f(s) \hquad ds
+        \end{equation}
+        \begin{equation}
+            \leftindex[I]^L {D_{-}^{\alpha}} f(t) = \dv{}{t} \leftindex[I]^L {I_{-}^{1-\alpha}} f(t) = \frac{1}{\Gamma(1-\alpha)} \dv{}{t} \int_{t}^{+\infty} (s-t)^{-\alpha}f(s) \hquad ds
+        \end{equation}
+        \item The Riemann Fractional Derivatives
+        \begin{equation}
+            \leftindex[I]^R {D_{+}^{\alpha}} f(t) = \dv{}{t} \leftindex[I]^R {I_{+}^{1-\alpha}} f(t) = \frac{1}{\Gamma(1-\alpha)} \dv{}{t} \int_{0}^{t} (t-s)^{-\alpha}f(s) \hquad ds
+        \end{equation}
+        \begin{equation}
+            \leftindex[I]^R {D_{-}^{\alpha}} f(t) = \dv{}{t} \leftindex[I]^R {I_{-}^{1-\alpha}} f(t) = \frac{1}{\Gamma(1-\alpha)} \dv{}{t} \int_{t}^{0} (s-t)^{-\alpha}f(s) \hquad ds
+        \end{equation}
+        \item The Liouville-Caputo Fractional Derivatives
+        \begin{equation}
+            \leftindex[I]^{LC} {D_{+}^{\alpha}} f(t) = \leftindex[I]^L {I_{+}^{1-\alpha}} \dv{}{t} f(t) = \frac{1}{\Gamma(1-\alpha)}  \int_{-\infty}^{t} (t-s)^{-\alpha} \dv{f(s)}{s}  \hquad ds
+        \end{equation}
+        \begin{equation}
+            \leftindex[I]^{LC} {D_{-}^{\alpha}} f(t) = \leftindex[I]^L {I_{-}^{1-\alpha}} \dv{}{t} f(t) = \frac{1}{\Gamma(1-\alpha)} \int_{t}^{+\infty} (s-t)^{-\alpha} \dv{f(s)}{s} \hquad ds
+        \end{equation}
+        \item The Riemann-Caputo Fractional Derivative (The Caputo Fractional Derivative)
+        \begin{equation}
+            \leftindex[I]^{C} {D_{+}^{\alpha}} f(t) = \leftindex[I]^R {I_{+}^{1-\alpha}} \dv{}{t} f(t) = \frac{1}{\Gamma(1-\alpha)}  \int_{0}^{t} (t-s)^{-\alpha} \dv{f(s)}{s}  \hquad ds
+        \end{equation}
+        \begin{equation}
+            \leftindex[I]^{C} {D_{-}^{\alpha}} f(t) = \leftindex[I]^R {I_{-}^{1-\alpha}} \dv{}{t} f(t) = \frac{1}{\Gamma(1-\alpha)} \int_{t}^{0} (s-t)^{-\alpha} \dv{f(s)}{s} \hquad ds
+        \end{equation}
+\end{enumerate}
+\subsection{Differ-Integral Operator}
+If we combine fractional differentiation and fractional 
+integration we get a unified derivative-integral operator 
+that works basically as a piecewise combination of the two where 
+plugging in a positive order uses the fractional derivative 
+formula, and plugging in a negative order uses the fractional 
+integral formula. This combined operator is known as a 
+"Differ-Integral" and it's defined by
+\[
+    \prescript{RL}{a}{D_{t}^{\alpha}} f(t) = 
+    \begin{cases}
+        \displaystyle D^{\alpha} f(t) = \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{a}^{t} (t-s)^{m - \alpha -1}f(s) \hquad ds \qquad &\text{if } \alpha > 0
+        \\
+        \displaystyle f(t)  &\text{if } \alpha = 0
+        \\
+        \displaystyle I^{\alpha} f(t) = \frac{1}{\Gamma(\alpha)}\int_{a}^{t} (t-s)^{\alpha -1}f(s) \hquad ds &\text{if } \alpha < 0
+    \end{cases}
+\]
+\subsection{Fractional Derivative According To Fourier}
+The Fractional Derivative represented using Fourier series is 
+\[
+    f(x) = a_0 + \sum_{k=1}^{\infty} a_k cos(kx) + b_k sin(kx)
+\]
+\[
+    \leftindex[I]^{\mathcal{F}} {D^{\alpha}} f(x) = \sum_{k=1}^{\infty} a_k k^\alpha cos(kx + \frac{\pi}{2} \alpha) + b_k k^\alpha sin(kx + \frac{\pi}{2} \alpha)
+\]
+\newpage
+\subsection{The Grünwald-Letnikov Fractional Derivative}
+Another definition of a fractional derivative in terms of a limit of finite differences.
+Starting with the definition of the first derivative as
+\[
+\dv{}{t} f(t) = \lim_{h \to 0} \frac{\Delta f(x)}{h} = \lim_{h \to 0} \frac{f(x)-f(x-h)}{h}
+\]
+And for higher derivatives
+\begin{align*}
+    \dv[2]{}{t} f(t) &= \lim_{h \to 0} \frac{\Delta^2 f(x)}{h^2} = \lim_{h \to 0} \frac{\Delta (f(x)-f(x-h))}{h^2}
+    \\
+    &=\lim_{h \to 0} \frac{f(x)-2f(x-h)+f(x-2h)}{h^2}
+    \\
+    \dv[3]{}{t} f(t) &= \lim_{h \to 0} \frac{\Delta^3 f(x)}{h^3} = \lim_{h \to 0} \frac{\Delta^2 (f(x)-f(x-h))}{h^3}
+    \\
+    &=\lim_{h \to 0} \frac{\Delta(f(x)-2f(x-h)+f(x-2h))}{h^3}
+    \\
+    &=\lim_{h \to 0} \frac{f(x)-3f(x-h)+3f(x-2h)-f(x-3h)}{h^3}
+\end{align*}
+And so on we can deduce the formula for the $n^{\text{th}}$ derivative
+\[
+    \dv[n]{}{t} f(t) = \lim_{h \to 0} \frac{\Delta^n f(x)}{h^n} 
+    = \lim_{h \to 0} \left[  \frac{1}{h^{n}} \sum_{k=0}^{n} (-1)^{k} {n \choose k} f(t-kh) \right]
+\]
+Where $\displaystyle {n \choose k} = \frac{n!}{k!(n-k)!}$ if we change the factorial to the gamma function 
+we reach The Grünwald-Letnikov Fractional Derivative
+\begin{align*}
+    \leftindex[I]^{GL} {D^{\alpha}} f(t) 
+    &= \lim_{h \to 0} \frac{\Delta^\alpha f(x)}{h^\alpha} 
+    \\
+    &= \lim_{h \to 0} \left[  \frac{1}{h^{\alpha}} \sum_{k=0}^{\infty} (-1)^{k} {\alpha \choose k} f(t-kh) \right]
+    \\
+    &= \lim_{h \to 0} \left[  \frac{1}{h^{\alpha}} \sum_{k=0}^{\infty} (-1)^{k} \frac{\Gamma(\alpha)}{k!\Gamma(\alpha-k)} f(t-kh) \right]
+\end{align*}
+\subsection{The Canavati Fractional Derivative}
+There is another definition of fractional derivatives that is useful in deriving
+inequalities. This is the Canavati fractional derivative. It is "between" the
+Riemann-Liouville derivative and the Caputo derivative. 
+
+Let $m-1 < \alpha < m$. Then,
+the Canavati derivative of order $\alpha$ is defined as
+\[
+    \prescript{Can}{a}{D_{t}^{\alpha}} f(t) = \frac{1}{\Gamma(m-\alpha)}\dv{}{t}\int_{a}^{t} (t-s)^{n-\alpha-1} \dv[n-1]{}{s}f(s)ds
+\]
+For $f(t) \in C^\alpha[a,b]$
+\[
+    C^\alpha[a,b] := \left\{ f \in C^{m-1}[a,b] \quad | \quad \leftindex[I]_a {I_{t}^{n-1}} f(t) \in C^{1}[a,b] \right\}
+\]
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% محتاج اعرف الهولدر سبيس عشان هستعمله في التعريف الجي
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{The Marchaud Fractional Derivative}
+The Left Marchaud fractional derivative of the order $0 < \alpha < 1$ for $f(t) \in \mathcal{H}^\lambda[a,b] $ , 
+$\lambda>\alpha$ defined by
+\[
+    \prescript{M}{a}{D_{t}^{\alpha}} f(t) = \frac{f(t)}{\Gamma(1-\alpha)(t-a)^\alpha} 
+    + \frac{\alpha}{\Gamma(1-\alpha)} \int_{a}^{t} \frac{f(t) - f(s)}{(t-s)^{1+\alpha}} \hquad ds
+\]
+The Right Marchaud fractional derivative is defined as
+\[
+    \prescript{M}{t}{D_{b}^{\alpha}} f(t) = \frac{f(t)}{\Gamma(1-\alpha)(b-t)^\alpha} 
+    + \frac{\alpha}{\Gamma(1-\alpha)} \int_{t}^{b} \frac{f(t) - f(s)}{(s-t)^{1+\alpha}} \hquad ds
+\]
+\newpage
+\subsection{The Riesz Fractional Integral And Derivative}
+The most prominent approach is the Riesz fractional integral and fractional derivative
+
+It is a linear combination of both left and right fractional Liouville integrals (5.3) and (5.4)
+\begin{align*}
+    \leftindex[I]^{RZ} {I^{\alpha}} f(t) &= \frac{\leftindex[I]^L {I_{+}^{\alpha}} + \leftindex[I]^L {I_{-}^{\alpha}}}{2 \cos(\frac{\pi}{2}\alpha)} f(t)
+    \\
+    & = \frac{1}{2 \Gamma(\alpha) \cos(\frac{\pi}{2}\alpha)}\int_{-\infty}^{+\infty} |t-s|^{\alpha-1}f(s) \hquad ds
+\end{align*}
+This is fractional Riesz integral
+
+In order to derive the explicit form of the Riesz fractional derivative
+we first present the left and right Liouville derivative (5.7) and (5.8) in an alternative form
+\begin{align*}
+    \leftindex[I]^L {D_{+}^{\alpha}} f(t) &= \frac{\alpha}{ \Gamma(1-\alpha)} \int_{0}^{\infty} \frac{f(t)-f(t-s)}{s^{\alpha+1}} ds
+    \\
+    \leftindex[I]^L {D_{-}^{\alpha}} f(t) &= \frac{\alpha}{ \Gamma(1-\alpha)} \int_{0}^{\infty} \frac{f(t)-f(t+s)}{s^{\alpha+1}} ds
+\end{align*}
+Which follows from (5.7)
+\begin{align*}
+    \leftindex[I]^L {D_{+}^{\alpha}} f(t) &= \dv{}{t} \leftindex[I]^L {I_{+}^{1-\alpha}} f(t) 
+    \\
+    &= \frac{1}{\Gamma(1-\alpha)} \dv{}{t} \int_{-\infty}^{t} (t-s)^{-\alpha}f(s) \hquad ds
+    \intertext{
+            Substitute
+    \(
+    \begin{cases}
+        \displaystyle (t-s) = \xi
+        \\
+        \displaystyle d\xi = -ds
+        \\
+        \displaystyle \infty \to 0
+    \end{cases}
+    \)
+        }
+        &= \frac{1}{\Gamma(1-\alpha)} \dv{}{t} \int_{\infty}^{0} \xi^{-\alpha}f(t-\xi) \hquad (-d\xi)
+        \\
+        &= \frac{1}{\Gamma(1-\alpha)} \int_{0}^{\infty} \xi^{-\alpha}\pdv{}{t}f(t-\xi) \hquad d\xi
+        \\
+        &= \frac{1}{\Gamma(1-\alpha)} \int_{0}^{\infty} \xi^{-\alpha}\left(-\pdv{}{\xi}f(t-\xi)\right) \hquad d\xi
+        \\
+        &= \frac{\alpha}{\Gamma(1-\alpha)} \left(\int_{0}^{\infty} \frac{f(t)}{\xi^{\alpha+1}} \hquad d\xi - \int_{0}^{\infty} \frac{f(t-\xi)}{\xi^{\alpha+1}} \hquad d\xi \right)
+        \\
+        &= \frac{\alpha}{\Gamma(1-\alpha)} \int_{0}^{\infty} \frac{f(t) - f(t-\xi)}{\xi^{\alpha+1}} \hquad d\xi 
+\end{align*}
+And similarly for (5.8)
+
+Now applying the formula
+\[
+    \Gamma(\alpha)\Gamma(1-\alpha) = \frac{\pi}{\sin(\pi \alpha)}
+\]
+We get 
+\[
+    \frac{\alpha}{\Gamma(1-\alpha)} = \Gamma(1+\alpha) \frac{\sin(\pi \alpha)}{\pi}
+\]
+With the definition of the fractional derivative according to Riesz
+\[
+\leftindex[I]^{RZ} {D^{\alpha}} f(t) = - \frac{\leftindex[I]^L {D_{-}^{\alpha}} + \leftindex[I]^L {D_{+}^{\alpha}}}{2 \cos(\frac{\pi}{2}\alpha)} f(t)
+\]
+We explicitly obtain
+\begin{align*}
+    \leftindex[I]^{RZ} {D^{\alpha}} f(t) &= \Gamma(1+\alpha) \frac{\sin(\pi \alpha)}{2\pi \cos(\frac{\pi}{2}\alpha)} \int_{0}^{\infty} \frac{f(t+s) -2f(t) + f(t-s)}{s^{\alpha+1}} \hquad ds
+    \\
+    &= \Gamma(1+\alpha) \frac{\sin(\frac{\pi}{2}\alpha)}{\pi} \int_{0}^{\infty} \frac{f(t+s) -2f(t) + f(t-s)}{s^{\alpha+1}} \hquad ds
+\end{align*}
+
+
+\subsection{The Feller Fractional Integral And Derivative}
+A possible generalization for the Riesz fractional derivative was proposed
+by Feller (1952). He suggested a general superposition of both
+fractional Liouville integrals (5.3) and (5.4)
+\[
+    \leftindex[I]^{F} {I_{\theta}^{\alpha}} = c_-(\theta,\alpha) \leftindex[I]^L {I_{+}^{\alpha}} + c_+(\theta,\alpha) \leftindex[I]^L {I_{-}^{\alpha}}
+\]
+Introducing a free parameter 0 < $\theta$ < 1 which is a measure for the influence of both components
+\begin{align*}
+    c_-(\theta,\alpha) = \frac{\sin(\frac{\pi}{2}(\alpha-\theta))}{\sin(\pi \theta)}
+    \\
+    c_+(\theta,\alpha) = \frac{\sin(\frac{\pi}{2}(\alpha+\theta))}{\sin(\pi \theta)}
+\end{align*}
+The fractional Feller derivative is then given as
+\[
+    \prescript{F}{}{D_{\theta}^{\alpha}} = - \left[c_+(\theta,\alpha) \prescript{}{L}{D_{+}^{\alpha}} + c_+(\theta,\alpha) \prescript{}{L}{D_{-}^{\alpha}}\right]
+\]
+For the special case $\theta$ = 0 we obtain
+\[
+    c_+(0,\alpha) = c_-(0,\alpha) = \frac{1}{2 \cos(\alpha \frac{\pi}{2})}
+\]
+Which exactly corresponds to the definition of the Riesz derivative.
+\subsection{Hadamard Fractional Integral And Derivative}
+The Hadamard fractional Integral of order $\alpha$ of a function $f(t) \in L_p[a,b]$ and $a \neq 0$ is defined by 
+\[
+    \leftindex[I]^H {I_a^{\alpha}} f(t) = \frac{1}{\Gamma(\alpha)} \int_{a}^{t} \left(\ln \frac{t}{s}\right)^{\alpha-1} \frac{f(s)}{s} \hquad ds
+\]
+Let $m-1 < \alpha < m$ the Hadamard fractional derivative of order $\alpha$
+of a function $f(t) \in AC^m[a,b]$ is defined by 
+\[
+    \leftindex[I]^H {D_a^{\alpha}} f(t) = \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t} \int_{a}^{t} \left(\ln \frac{t}{s}\right)^{n-\alpha-1} \frac{f(s)}{s} \hquad ds
+\]
+And the Hadamard-Caputo fractional derivative of order $\alpha$ is defined by 
+\[
+    \leftindex[I]^{HC} {D_a^{\alpha}} f(t) = \frac{1}{\Gamma(m-\alpha)} \int_{a}^{t} \left(\ln \frac{t}{s}\right)^{n-\alpha-1} \frac{f^{(m)}(s)}{s} \hquad ds
+\]
+\newpage
+\subsection{Generalized Fractional Integration And Differentiation}
+
+When we used the repeated integration formula we used 
+Riemann definition of the integration but if we use Riemann-Stieltjes Integral
+\[
+    \mathcal{J} f(t) = \int_{0}^{t} f(s) \hquad dg(s)
+\]
+We get 
+\begin{align*}
+    \mathcal{J} f(t) &= \int_{0}^{t} f(s) \hquad dg(s)
+    \\
+    \mathcal{J}^2 f(t) &= \int_{0}^{t}\int_{0}^{s} f(\theta) \hquad dg(\theta) \hquad dg(s)
+    \intertext{We can interchanging the order of integration using Fubini’s theorem}
+    &= \int_{0}^{t}\int_{\theta}^{t} \hquad dg(s) \hquad f(\theta) \hquad dg(\theta)
+    \\
+    &= \int_{0}^{t}(g(t)-g(\theta)) f(\theta) \hquad dg(\theta) = \int_{0}^{t}(g(t)-g(s)) f(s) \hquad dg(s)
+    \\
+    \mathcal{J}^3 f(t) &= \int_{0}^{t} \int_{0}^{s} (g(s)-g(\theta)) f(\theta) \hquad dg(\theta) \hquad dg(s)
+    \\
+    &= \int_{0}^{t} \int_{\theta}^{s} (g(s)-g(\theta)) \hquad dg(s) \hquad f(\theta) \hquad dg(\theta)
+    \\
+    &= \int_{0}^{t} \frac{(g(t)-g(\theta))^2}{2} f(\theta) \hquad dg(\theta)
+    \intertext{And so on we get that}
+    \mathcal{J}^n f(t) &=\int_{0}^{t} \frac{(g(t)-g(s))^{n-1}}{(n-1)!} f(s) \hquad dg(s)
+\end{align*}
+Now change the factorial to the Gamma function and the order $n$ to an arbitrary order $\alpha$ we get the Generalized Fractional integral
+\[
+    \mathcal{J}^\alpha f(t) =\frac{1}{\Gamma(\alpha)} \int_{0}^{t} (g(t)-g(s))^{\alpha-1} f(s) \hquad dg(s)
+\]
+Or
+\[
+    \mathcal{J}^\alpha f(t) =\frac{1}{\Gamma(\alpha)} \int_{0}^{t} (g(t)-g(s))^{\alpha-1}g'(s) f(s) \hquad ds
+\] 
+In case of RL Fractional integral $g(t)$ is chosen to be $t$ and in hadamard is chosen to be $ln(t)$
+% g is increasing and 
+%   - f continuous 
+%   - f monotonic + g continuous
+and using this definition we can deduce the Generalized Fractional Derivative of Riemann sense
+\[
+    \mathfrak{D}^\alpha f(t) =\dv[m]{}{t}\mathcal{J}^{m-\alpha} f(t) 
+    = \frac{1}{\Gamma(m-\alpha)} \dv[m]{}{t}\int_{0}^{t} (g(t)-g(s))^{m-\alpha-1} f(s) \hquad dg(s)
+\] 
+And Caputo sense
+\[
+    \leftindex[I]^C \mathfrak{D}^\alpha f(t) =\mathcal{J}^{m-\alpha} \dv[m]{}{t}f(t) 
+    = \frac{1}{\Gamma(m-\alpha)} \int_{0}^{t} (g(t)-g(s))^{m-\alpha-1} \dv[m]{f(s)}{s} \hquad dg(s)
+\] 
+\newpage
+\subsection{Kolwankar And Gangal (1994)}
+Local fractional calculus is a new branch of mathematics (is also called Fractal calculus) 
+was first introduced by Kolwankar and Gangal. It deals with derivatives and integrals of the functions defined on fractal sets. 
+And it is explain the behavior of continuous but nowhere differentiable function.
+
+They proposed the following definition for the local fractional derivative of a function defined on fractal sets
+\[
+    \prescript{KG}{x_0}{D_x^{\alpha}} f(x) = \lim_{x \to x_0}  \dv[\alpha]{(f(x)-f(y))}{(x-y)} \quad,\quad 0<\alpha<1
+\]
+And the local fractional integrals of a function defined on fractal sets is defined as   
+\[
+    \prescript{KG}{a}{I_b^{\alpha}} f(x) = \lim_{N \to \infty} \sum_{i=0}^{N-1} f(x_i^*) \frac{d^{-\alpha} 1_{dx_i(x)}}{d(x_{i+1}-x_i)}
+\]
+Where $1_{dx_i(x)}$ is the unit function defined upon $[x_{i},x_{i+1}]$ and $x_i^*$ is a point in the interval $[x_{i},x_{i+1}]$
+and the intervals $[x_{i},x_{i+1}]$ , $i=0,1,2,\dots,N-1$ are partitions of the interval $[a,b]$
+
+\subsection{The Gohar Fractional Integral And Derivative}
+And last but not least The Gohar definition a new local fractional derivative
+introduced by Abdelrahman Gohar ,Mayada Younes and Salah B.Doma in 2023
+which generalizes the classical limit definition of the derivative.
+
+Given a function $f : [0,\infty) \to \mathbb{R}$, the GFD of $f$ of order $\alpha$, denoted by $G_\alpha$ is defined by
+\[
+    G_\alpha f(t) = \lim_{h \to 0} \frac{1}{h}\left[  f\left( t \left\{ 1+ \ln\left( 1+ \frac{h\Gamma(\eta)}{\Gamma(\eta-\alpha+1)} t^{-\alpha} \right)\right\}\right) -f(t) \right]
+\]
+For $t>0$ , $\alpha \in (0,1)$ , $\eta \in \mathbb{R}^+$
+
+And for $t \geq 0$ if $f$ is a function defined on $(0, t]$, then the GFI of $f$, of order $\alpha$,
+is defined by
+\[
+    \mathfrak{T}^\alpha f(t) = \frac{\Gamma(\eta-\alpha+1)}{\Gamma(\eta)} \int_{0}^{t} \frac{f(s)}{s^{1-\alpha}} ds
+\]
+
+And there is a lot of others different formulations for fractional derivatives like
+\begin{itemize}
+    \item Chen Derivative
+    \item Cossar Derivative
+    \item Davidson-Essex Derivative
+    \item Hilfer Derivative
+    \item Jumarie Derivative
+    \item Osler Derivative
+    \item Weyl Derivative
+    \item Yang Derivative
+\end{itemize}
+And there's no definitive version because each one of them was trying to preserve some of the ordinary derivative 
+properties but there is no such Definition for the fractional derivative that preserve all the ordinary derivative 
+properties

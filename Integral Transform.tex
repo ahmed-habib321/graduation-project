@@ -1,0 +1,467 @@
+\section{Integral Transformations}
+\begin{figure*}[b]
+    \begin{minipage}[h]{\textwidth}
+        \begin{enrichment}{Pierre Simon Laplace}{Chars/Laplace.jpg}{2.4}{.8}{.17}
+            Laplace (1749-1827) a prominent figure in mathematics and physics, made significant contributions to a wide range of fields during the 18th and 19th centuries. 
+            Laplace's mark on fractional calculus was significant, though not all-encompassing.  He provided a crucial stepping stone in 1812 by defining a fractional derivative through an integral equation. This definition, along with subsequent work by mathematicians like Riemann and Liouville, paved the way for fractional calculus to become a robust field studying derivatives and integrals with "in-between" orders.
+        \end{enrichment} 
+    \end{minipage}
+\end{figure*}
+Integral transformations are mathematical operations that map functions from one space to another, 
+typically defined on the real line or in higher dimensions. They represent a fundamental tool for solving problems and simplifying complex mathematical operations
+we will take a look at Laplace,Fourier, Mellin transformations for fractional integral and fractional derivatives that are 
+essential to solve a lot of differential equation 
+\subsection{Laplace Transform}
+The Laplace Transform of the function $f(t)$ defined by 
+\begin{equation}
+    \mathcal{L}\left[ f(t) \right] = \int_{0}^{\infty} e^{-st} f(t) dt = F(s)
+\end{equation}
+The function $F(s)$ is of complex variable $s$ for the existence of 
+this integral $f(t)$ must be exponential of order $\alpha$ this means 
+that $\exists M,T \in \mathbb{R}^+$ Such that
+\[
+e^{-\alpha t} f(t) \leq M \quad,\quad \forall t > T
+\]
+i.e $f(t)$ must not grow faster than a certain exponential function when $t \to \infty$
+
+And to restore the original function $f(t)$ from $F(s)$ we use the inverse Laplace Transform
+\[
+f(t) = \mathcal{L}^{-1}\left[ F(s) \right] = \int_{\gamma-i\infty}^{\gamma+i\infty} e^{st} F(s) \hquad ds 
+\]
+Where the integration is done along the vertical line $ Re(s)=\gamma$ in the complex plane such that 
+$\gamma$ is greater than the real part of all singularities of $F(s)$ and $F(s)$ is bounded on the line
+
+For example if the contour path is in the region of convergence. If all singularities are in the left half-plane, or 
+$F(s)$ is an entire function, then $\gamma$ can be set to zero.
+
+Now some of the useful properties of the Laplace Transform that we will use later 
+\setcounter{property}{0}
+\begin{property}
+    The Laplace Transform Of The Convolution 
+    \[
+    f(t)*g(t) = \int_{0}^{t} f(t-s)g(t) \hquad dt = \int_{0}^{t} f(t)g(t-s) \hquad dt
+    \]
+    \begin{equation}
+        \mathcal{L}\left[ f(t)*g(t) \right] = \mathcal{L}\left[ f(t) \right]\mathcal{L}\left[ g(t) \right] = F(s)G(s)
+    \end{equation}
+\end{property}
+\begin{property}
+The Laplace Transform Of The Derivative Of An Integer Order $n$
+\begin{equation}
+    \mathcal{L}\left[ f^{(n)}(t) \right] = s^n F(s) - \sum_{k=0}^{n-1} s^{n-k-1} f^{(k)}(0)
+\end{equation}
+OR
+\begin{equation}
+    \mathcal{L}\left[ f^{(n)}(t) \right] = s^n F(s) - \sum_{k=0}^{n-1} s^k f^{(n-k-1)}(0)
+\end{equation}
+Which can be obtained from (4.1) by integrating by parts 
+\end{property}
+\subsubsection{Laplace Transform Of Riemann-Liouville Fractional Integral}
+We will start with Laplace Transform of Riemann-Liouville fractional Integral
+\[
+    I^\alpha f(t) = \frac{1}{\Gamma(\alpha)}\int_{0}^{t} (t-s)^{\alpha-1}f(s) \hquad ds
+\]
+We know that we can rewrite it as a convolution
+\[
+    I^\alpha f(t) = \frac{1}{\Gamma(\alpha)} g(t)*f(t)
+\]
+Where $\displaystyle g(t) = t^{\alpha-1}$
+
+Now take the Laplace Transform for both sides
+\[
+    \mathcal{L}\left[ I^\alpha f(t) \right] = \mathcal{L}\left[ \frac{1}{\Gamma(\alpha)} g(t)*f(t) \right] = \frac{1}{\Gamma(\alpha)} \mathcal{L}\left[ g(t) \right]\mathcal{L}\left[ f(t) \right]
+\]
+And we know that 
+\[
+    \mathcal{L}\left[ t^{\alpha-1} \right] = \Gamma(\alpha)s^{-\alpha}
+\]
+Therefore we obtain Laplace Transform of Riemann-Liouville fractional Integral
+\begin{equation}
+    \mathcal{L}\left[ I^\alpha f(t) \right] = \frac{1}{\Gamma(\alpha)} \Gamma(\alpha)s^{-\alpha}F(s) = s^{-\alpha}F(s)
+\end{equation}
+\subsubsection{Laplace Transform Of Riemann-Liouville Fractional Derivative}
+Now let us try to get Laplace Transform for Riemann-Liouville fractional derivative
+\[
+    D^{\alpha} f(t) = \dv[m]{}{t} I^{m-\alpha} f(t)
+\]
+Now take the Laplace Transform of it 
+\[
+    \mathcal{L}\left[ D^{\alpha} f(t) \right]  = \mathcal{L}\left[ \dv[m]{}{t} I^{m-\alpha} f(t) \right] = \mathcal{L}\left[ \dv[m]{}{t} g(t) \right]
+\]
+Using the formula for The Laplace Transform of the derivative of an integer order (4.4)
+\[
+    \mathcal{L}\left[ \dv[m]{}{t} g(t) \right] = s^m \mathcal{L}\left[ g(t) \right] - \sum_{k=0}^{m-1} s^k \left[\dv[m-k-1]{}{t}g(t)\right]_{t=0}
+\]
+Now Substitute for $g(t) = I^{m-\alpha} f(t)$ we get
+\begin{align*}
+    \mathcal{L}\left[ D^{\alpha} f(t) \right] &= s^m s^{\alpha-m} F(s) - \sum_{k=0}^{m-1} s^k \left[\dv[m-k-1]{}{t}I^{m-\alpha} f(t)\right]_{t=0}
+    \\
+    &=s^{\alpha} F(s) - \sum_{k=0}^{m-1} s^k \left[\dv[m-k-1]{}{t}I^{m-k-1-\alpha+k+1} f(t)\right]_{t=0}
+    \\
+    &=s^{\alpha} F(s) - \sum_{k=0}^{m-1} s^k \left[D^{\alpha-k-1} f(t)\right]_{t=0}
+    % &=s^{\alpha} F(s) - s^{m-1} \left[I^{m-\alpha}f(t)\right]_{t=0} - \sum_{k=0}^{m-2} s^k \left[D^{\alpha-k-1} f(t)\right]_{t=0} \tag{4.6}
+    \setcounter{equation}{6}
+\end{align*}
+This is the Laplace transform of the Riemann Liouville fractional derivative
+However, it's practical applicability is limited by the absence 
+of the physical interpretation of the limit values of fractional derivatives 
+at the lower terminal $t = 0$. such an interpretation is not known.
+\subsubsection{Laplace Transform Of Caputo Derivative}
+The Caputo derivative is defined by
+\[
+    \leftindex[I]^C{D^\alpha} f(t) = I^{m-\alpha} \dv[m]{}{t} f(t)
+\]
+Now take the Laplace Transform of both sides
+\[
+    \mathcal{L}\left[ \leftindex[I]^C{D^\alpha} f(t) \right] = \mathcal{L}\left[ I^{m-\alpha} \dv[m]{}{t} f(t) \right] = s^{\alpha-m} \mathcal{L}\left[ \dv[m]{}{t} f(t) \right]
+\]
+Using the formula for The Laplace Transform of the derivative of an integer order {\footnotesize(4.3)}
+\begin{align*}
+    \mathcal{L}\left[ \leftindex[I]^C{D^\alpha} f(t) \right] =s^{\alpha-m}\left[s^m F(s) - \sum_{k=0}^{m-1} s^{m-k-1} f^{(k)}(0) \right]
+    = s^{\alpha}F(s) - \sum_{k=0}^{m-1} s^{\alpha-k-1} f^{(k)}(0)
+\end{align*}
+Since this formula for the Laplace transform of the Caputo derivative
+involves the values of the function $f(t)$ and it's derivatives at the lower
+terminal $t=0$ for which a certain physical interpretation exists 
+(for example, $f(0)$ is the initial position, $f^{(1)}(0)$ is the initial velocity, $f^{(2)}(0)$ is
+the initial acceleration), we can expect that it can be useful for solving
+applied problems leading to linear fractional differential equations with
+constant coefficients with accompanying initial conditions in traditional
+form.
+\newpage
+\subsection{Fourier Transform}
+\begin{figure*}[b]
+    \begin{minipage}[h]{\textwidth}
+        \begin{enrichment}{Jean-Baptiste Joseph Fourier}{Chars/Fourier.jpg}{2.4}{.8}{.17}
+            Joseph Fourier (1768–1830) was a brilliant French mathematician and physicist
+            although he laid the groundwork for many areas of mathematics, he didn't directly contribute to fractional calculus, 
+            a field that emerged later. However, the concept of Fourier transforms  plays a role in modern fractional calculus. 
+            Fractional Fourier transforms are mathematical tools used to analyze and solve equations involving non-integer order 
+            derivatives.
+        \end{enrichment} 
+    \end{minipage}
+\end{figure*}
+The Fourier Transform of a continuous function $f(t)$ absolutely integrable 
+on $(-\infty,\infty)$ is defined by
+\[
+    \mathcal{F}\left[ f(t) \right] = \int_{-\infty}^{\infty} e^{-i\omega t} f(t) \hquad dt = F(\omega)
+\]
+And the original $f(t)$ can be restored from it's Fourier Transform $F(\omega)$
+by the inverse Fourier transform
+\[
+    \mathcal{F}^{-1}\left[ F(\omega) \right] = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{i\omega t} F(\omega) \hquad d\omega = f(t)
+\]
+
+Fourier Transform have the following properties
+\setcounter{property}{0}
+\begin{property}
+    The Fourier Transform Of The Convolution 
+
+    Let $f(t)$ and $g(t)$ be two functions defined on $(-\infty,\infty)$,
+\[
+    f(t)*g(t) = \int_{-\infty}^{\infty} f(t-s)g(t) \hquad dt = \int_{-\infty}^{\infty} f(t)g(t-s) \hquad dt    
+\]
+The Fourier Transform of their convolution is equal to the product of their Fourier transforms
+\begin{equation}
+    \mathcal{F}\left[ f(t)*g(t) \right] = \mathcal{F}\left[ f(t) \right] \mathcal{F}\left[ g(t) \right] = F(\omega)G(\omega)
+\end{equation}
+\end{property}
+\begin{property}
+The Fourier Transform Of Derivatives
+
+Let $f(t)$ and it's derivatives vanish for $t\to \pm\infty$ then 
+the Fourier transform of the $ n^{\text{th}} $ derivative of $f(t)$ is
+\begin{equation}
+    \mathcal{F} \left[ \dv[n]{}{t}f(t) \right] = (-i\omega)^n F(\omega)
+\end{equation}
+\end{property}
+\subsubsection{Fourier Transform Of Riemann-Liouville Integral}
+As we did in Laplace Transform here as well 
+we will evaluate the Fourier transform of the Riemann-Liouville fractional integral 
+but first let's change it's form with lower terminal $-\infty$ and assume that $0<\alpha<1$ we get
+\[
+    I_{-\infty}^\alpha f(t) = \frac{1}{\Gamma(\alpha)}\int_{-\infty}^{t} (t-s)^{\alpha-1}f(s) \hquad ds
+\]
+Let us define 
+\(
+g(t) \begin{cases}
+    \displaystyle \frac{t^{\alpha-1}}{\Gamma(\alpha)} \quad &,\quad t>0
+    \\
+    \displaystyle 0 \quad &,\quad   t \leq 0
+\end{cases}
+\)
+
+Now to get it's Fourier Transform
+\[
+    G(\omega) = \mathcal{F}\left[ g(t) \right] = \frac{1}{\Gamma(\alpha)} \int_{0}^{\infty} t^{\alpha-1} e^{-i \omega t} \hquad dt= (-i\omega)^{-\alpha}
+\]
+Now we can find the Fourier transform of the Riemann-Liouville fractional integral , 
+which can be written as a convolution of the functions $g(t)$ and $f(t)$
+\[
+    \mathcal{F}\left[ I_{-\infty}^\alpha f(t) \right] = \left[ g(t)*f(t) \right] = G(\omega)F(\omega) = (-i\omega)^{-\alpha} F(\omega)
+\]
+\subsubsection{Fourier Transform Of Riemann-Liouville Derivative}
+Now for the Fourier Transform of Riemann-Liouville fractional derivative
+\[
+    D_{-\infty}^{\alpha} f(t) = \dv[m]{}{t} I_{-\infty}^{m-\alpha} f(t)
+\]
+Now take the Fourier Transform of it 
+\[
+    \mathcal{F}\left[ D_{-\infty}^{\alpha} f(t) \right]  = \mathcal{F}\left[ \dv[m]{}{t} I_{-\infty}^{m-\alpha} f(t) \right] = \mathcal{F}\left[ \dv[m]{}{t} g(t) \right]
+\]
+Using the formula for The Fourier Transform of derivatives (4.8)
+\[
+    \mathcal{F}\left[ \dv[m]{}{t} g(t) \right] = (-i\omega)^{m} \mathcal{F}\left[ g(t) \right]
+\]
+Now Substitute for $g(t) = I_{-\infty}^{m-\alpha} f(t)$ we get
+\[
+\mathcal{F}\left[ D_{-\infty}^{\alpha} f(t) \right] = (-i\omega)^{m} (-i\omega)^{\alpha-m} F(\omega) = (-i\omega)^{\alpha} F(\omega)
+\]
+\subsubsection{Fourier Transform Of Caputo Derivative}
+The Caputo derivative is defined as follows
+\[
+    \leftindex[I]^C{D_{-\infty}^\alpha} f(t) = I_{-\infty}^{m-\alpha} \dv[m]{}{t} f(t)
+\]
+Now take the Fourier Transform of it 
+\[
+    \mathcal{F}\left[ \leftindex[I]^C{D_{-\infty}^\alpha} f(t) \right] = \mathcal{F}\left[ I_{-\infty}^{m-\alpha} \dv[m]{}{t} f(t) \right] = (-i\omega)^{\alpha-m} \mathcal{F}\left[ \dv[m]{}{t} f(t) \right]
+\]
+Using the formula for The Fourier Transform of derivatives (4.8)
+\begin{align*}
+    \mathcal{F}\left[ \leftindex[I]^C{D_{-\infty}^\alpha} f(t) \right] &= (-i\omega)^{\alpha-m} \mathcal{F}\left[ \dv[m]{}{t} f(t) \right]
+    \\
+    &= (-i\omega)^{\alpha-m}(-i\omega)^{m}F(\omega) = (-i\omega)^{\alpha}F(\omega)
+\end{align*}
+Which is the same as Riemann-Liouville fractional derivative Since both start from $-\infty$
+\newpage
+\subsection{Mellin Transforms}
+The Mellin integral Transform $F(s)$ of a function $f(t)$.
+which is defined in the interval $(0,\infty)$ is
+\begin{equation}
+    F(s) = \mathcal{M}\left[ f(t) \right] = \int_{0}^{\infty} f(t) t^{s-1} \hquad dt
+\end{equation}
+Where $s$ is complex variable , such as 
+\[
+\gamma_1 < Re(s) < \gamma_2    
+\]
+The Mellin transform exists if the function $f(t)$ is piecewise
+continuous in every closed interval $[a, b] \subset (0, \infty)$ and
+\[
+    \int_{0}^{1} |f(t)| t^{\gamma_1-1} \hquad dt < \infty \quad,\quad \int_{1}^{\infty} |f(t)| t^{\gamma_2-1} \hquad dt < \infty
+\]
+If the function $f(t)$ also satisfies the Dirichlet conditions in every
+closed interval $[a, b] \subset (0, \infty)$, then the function $f(t)$ can be restored
+using the inverse Mellin transform formula
+\[
+f(t) = \frac{1}{2\pi i} \int_{\gamma-i\infty}^{\gamma+i\infty} F(s)t^{-s} \hquad ds \quad,\quad (0<t<\infty)
+\]
+
+Properties of Mellin transform 
+\setcounter{property}{0}
+\begin{property}
+    Shift Property 
+    \\
+    It follows from the definition (4.9) that
+    \begin{equation}
+        \mathcal{M}\left[ t^\alpha f(t) \right] =\mathcal{M}\left[ f(t) \right]_{(s=s+\alpha)}= F(s+\alpha)
+    \end{equation}
+\end{property}
+\begin{property}
+The Mellin Transform Of The Mellin Convolution
+\[
+f(t)*g(t) = \int_{0}^{\infty} f(ts)g(s) \hquad ds
+\]
+Is given by the formula
+\begin{equation}
+    \mathcal{M}\left[ \int_{0}^{\infty} f(ts)g(s) \hquad ds \right] = F(s)G(1-s)
+\end{equation}
+\end{property}
+\begin{property}
+The Shift Of Convolution
+\begin{align*}
+    \mathcal{M}\left[ t^\lambda \int_{0}^{\infty} f(ts)g(s) \hquad ds \right] &= \left[ \mathcal{M}\left[\int_{0}^{\infty} f(ts)g(s) \hquad ds \right]\right]_{(s=s+\lambda)}
+    \\
+    &= F(s)\left[ G(1-s) \right]_{(s=s+\lambda)}
+    \\
+    &= F(s+\lambda)G(1-s-\lambda)
+\end{align*}
+\end{property}
+
+\begin{figure*}[b]
+    \begin{minipage}[h]{\textwidth}
+        \begin{enrichment}{Robert Hjalmar Mellin}{Chars/Mellin.jpg}{2.4}{.8}{.17}
+            Hjalmar Mellin (1854 - 1933) was a Finnish mathematician
+            His work in the early 1900s laid the foundation for applying fractional derivatives and integrals to real-world problems. 
+            Mellin's contributions involved defining the Mellin transform This transformation allowed mathematicians to express 
+            fractional-order derivatives and integrals in terms of more familiar operations. 
+            Mellin's work opened doors for further development of fractional calculus, 
+            making it a valuable tool in various scientific fields.
+        \end{enrichment} 
+    \end{minipage}
+\end{figure*}
+
+\begin{property}
+The Mellin Transform Of An Integer Order Derivative
+\begin{align*}
+    \mathcal{M}\left[ f^{(n)}(t) \right] &= \int_{0}^{\infty} f^{(n)}(t) t^{s-1} dt
+    \intertext{Using integration by parts}
+    & = \left[ f^{(n-1)}(t) t^{s-1} \right]_0^\infty - (s-1) \int_{0}^{\infty} f^{(n-1)}(t) t^{s-2} dt
+    \\
+    & = \left[ f^{(n-1)}(t) t^{s-1} \right]_0^\infty - (s-1) \mathcal{M}\left[ f^{(n-1)}(t) \right]_{(s=s-1)}
+    \\
+    \vdots
+    \\
+    & = \sum_{k=0}^{n-1}(-1)^k\frac{\Gamma(s)}{\Gamma(s-k)} \left[ f^{(n-k-1)}(t) t^{s-k-1} \right]_0^\infty 
+    + (-1)^n \frac{\Gamma(s)}{\Gamma(s-n)} F(s-n)
+\end{align*}
+But we know that 
+\begin{align*}
+    \Gamma(x)\Gamma(1-x) &= \frac{\pi}{sin(\pi x)}    
+    \intertext{Put $x=s-k$}
+    \Gamma(s-k)\Gamma(1-s+k) &= \frac{\pi}{sin(\pi (s-k))}
+    \\
+    &= \frac{\pi}{sin(\pi s)cos(\pi k)-cos(\pi s)sin(\pi k)}
+    \intertext{
+        $sin(\pi k) = 0 \quad,\quad cos(\pi k) = (-1)^k$
+    }
+    &= \frac{\pi}{sin(\pi s)}(-1)^k = \Gamma(s)\Gamma(1-s)(-1)^k
+    \intertext{Thus }
+    \frac{\Gamma(1-s+k)}{\Gamma(1-s)} &= (-1)^k\frac{\Gamma(s)}{\Gamma(s-k)}
+\end{align*}
+Therefore 
+\begin{equation}
+    \mathcal{M}\left[ f^{(n)}(t) \right] =  \sum_{k=0}^{n-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ f^{(n-k-1)}(t) t^{s-k-1} \right]_0^\infty 
+    + \frac{\Gamma(1-s+n)}{\Gamma(1-s)} F(s-n)
+\end{equation}
+If $f(t)$ and $Re(s)$ are such that all substitutions of the limits $t=0$
+and $t=\infty$ give zero, then the formula takes it's simplest form
+\begin{equation}
+    \mathcal{M}\left[ f^{(n)}(t) \right] = \frac{\Gamma(1-s+n)}{\Gamma(1-s)} F(s-n)
+\end{equation}
+\end{property}
+% \newpage
+\subsubsection{Mellin Transforms Of Riemann-Liouville Integral}
+Let us evaluate the mellin transform of the Riemann Liouville fractional integral.
+\begin{align*}
+    I^\alpha f(t) &= \frac{1}{\Gamma(\alpha)}\int_{0}^{t} (t-s)^{\alpha-1}f(s) \hquad ds
+\intertext{
+    Substitute
+\(
+\begin{cases}
+    \displaystyle s = t\theta
+    \\
+    \displaystyle ds = t \hquad d\theta
+    \\
+    \displaystyle 0 \to 1
+\end{cases}
+\)
+}
+   &= \frac{t^\alpha}{\Gamma(\alpha)}\int_{0}^{1} (1-\theta)^{\alpha-1} f(t\theta) \hquad d\theta
+    \intertext{
+        Let us define 
+\(
+g(t) \begin{cases}
+    \displaystyle (1-\theta)^{\alpha-1} \quad &,\quad 0 \leq t < 1
+    \\
+    \displaystyle 0 \quad &,\quad   t \geq 1
+\end{cases}
+\)
+    }
+    &= \frac{t^\alpha}{\Gamma(\alpha)}\int_{0}^{\infty} g(\theta) f(t\theta) \hquad d\theta
+\end{align*}
+Take the Mellin transform for it and using the Shift of Convolution property (3)
+\[
+    \mathcal{M}\left[ I^\alpha f(t) \right] = \frac{1}{\Gamma(\alpha)} F(s+\alpha)G(1-s-\alpha)
+\]
+The Mellin transform of the function $g(t)$ gives simply the beta function.
+\[
+    \mathcal{M}\left[ g(t) \right] = G(s) = \beta(\alpha,s) = \frac{\Gamma(\alpha)\Gamma(s)}{\Gamma(\alpha+s)}
+\]
+Thus
+\[
+    \mathcal{M}\left[ I^\alpha f(t) \right] = \frac{1}{\Gamma(\alpha)} F(s+\alpha)\beta(\alpha,1-s-\alpha) = \frac{\Gamma(1-s-\alpha)}{\Gamma(1-s)} F(s+\alpha)
+\]
+\subsubsection{Mellin Transforms Of Riemann-Liouville Derivative}
+Now let us get the Mellin transform of the RL fractional derivative 
+\[
+    D^{\alpha} f(t) = \dv[m]{}{t} I^{m-\alpha} f(t)
+\]
+Take the Mellin transform of it 
+\begin{align*}
+    \mathcal{M}\left[ D^{\alpha} f(t) \right] &= \mathcal{M}\left[ \dv[m]{}{t} I^{m-\alpha} f(t) \right] = \mathcal{M}\left[ \dv[m]{}{t} g(t) \right]
+    \intertext{Using The Mellin transform of an integer order derivative property}
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ \dv[m-k-1]{}{t} g(t) t^{s-k-1} \right]_0^\infty 
+    + \frac{\Gamma(1-s+m)}{\Gamma(1-s)} G(s-m)
+    \intertext{Now Substitute for $g(t)$}
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ \dv[m-k-1]{}{t} I^{m-\alpha} f(t) t^{s-k-1} \right]_0^\infty 
+    + \frac{\Gamma(1-s+m)}{\Gamma(1-s)}\mathcal{M}\left[ I^{m-\alpha} f(t) \right]_{s=s-m}
+    \\
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ D^{\alpha-k-1} f(t) t^{s-k-1} \right]_0^\infty 
+    \\
+    &+ \frac{\Gamma(1-s+m)}{\Gamma(1-s)}\left[ \frac{\Gamma(1-s-(m-\alpha))}{\Gamma(1-s)} F(s+(m-\alpha)) \right]_{s=s-m}
+    \\
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ D^{\alpha-k-1} f(t) t^{s-k-1} \right]_0^\infty 
+    \\
+    &+ \frac{\Gamma(1-s+m)}{\Gamma(1-s)}\frac{\Gamma(1-(s-m)-(m-\alpha))}{\Gamma(1-(s-m))} F((s-m)+(m-\alpha))
+    \\
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ D^{\alpha-k-1} f(t) t^{s-k-1} \right]_0^\infty 
+    + \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)
+    \tag{4.14}
+    \setcounter{equation}{14}
+\end{align*}
+If $0<\alpha<1$ then 
+\begin{equation}
+    \mathcal{M}\left[ D^{\alpha} f(t) \right] = \left[ I^{1-\alpha} f(t) t^{s-1} \right]_0^\infty + \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)
+\end{equation}
+If $f(t)$ and $Re(s)$ are such that all substitutions of the limits $t=0$
+and $t=\infty$ give zero, then the formula takes it's simplest form
+\begin{equation}
+    \mathcal{M}\left[ D^{\alpha} f(t) \right] = \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)
+\end{equation}
+\subsubsection{Mellin Transforms Of Caputo Derivative}
+Let $m-1\leq \alpha < m$ and we know that 
+\[
+    \leftindex[I]^C{D^\alpha} f(t) = I^{m-\alpha} \dv[m]{}{t} f(t)
+\]
+Now take the Mellin Transform of it 
+\begin{align*}
+    \mathcal{M}\left[ \leftindex[I]^C{D^\alpha} f(t) \right] &= \mathcal{M}\left[ I^{m-\alpha} \dv[m]{}{t} f(t) \right] =  \frac{\Gamma(1-s-m+\alpha)}{\Gamma(1-s)} \mathcal{M}\left[ \dv[m]{}{t} f(t) \right]_{s=s+m-\alpha}
+    \intertext{
+        Using the formula for The Mellin Transform of derivatives (4.13)
+    }
+    &= \frac{\Gamma(1-s-m+\alpha)}{\Gamma(1-s)} \mathcal{M}\left[ \dv[m]{}{t} f(t) \right]_{s=s+m-\alpha}
+    \\
+    &= 
+    \frac{\Gamma(1-s-m+\alpha)}{\Gamma(1-s)} 
+    \left\{ \sum_{k=0}^{m-1} \frac{\Gamma(1-s+k)}{\Gamma(1-s)} \left[ f^{(m-k-1)}(t) t^{s-k-1} \right]_0^\infty 
+    \right.
+    \\ 
+    &\left.+ \frac{\Gamma(1-s+m)}{\Gamma(1-s)} F(s-m)
+    \right\}_{s=s+m-\alpha}
+    \\
+    &= 
+    \frac{\Gamma(1-s-m+\alpha)}{\Gamma(1-s)} 
+    \left\{ \sum_{k=0}^{m-1} \frac{\Gamma(1-(s+m-\alpha)+k)}{\Gamma(1-(s+m-\alpha))} \left[ f^{(m-k-1)}(t) t^{(s+m-\alpha)-k-1} \right]_0^\infty 
+    \right.
+    \\ 
+    &\left.+ \frac{\Gamma(1-(s+m-\alpha)+m)}{\Gamma(1-(s+m-\alpha))} F((s+m-\alpha)-m)
+    \right\}
+    \\
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(1-(s+m-\alpha)+k)}{\Gamma(1-s)} \left[ f^{(m-k-1)}(t) t^{(s+m-\alpha)-k-1} \right]_0^\infty 
+    \\ 
+    &+ \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)
+    \intertext{If we put $k = m-k-1$ the summation value will not change only it's order}
+    &= \sum_{k=0}^{m-1} \frac{\Gamma(\alpha-s-k)}{\Gamma(1-s)} \left[ f^{(k)}(t) t^{s+k-\alpha} \right]_0^\infty 
+    + \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)
+    \tag{4.17}
+    \setcounter{equation}{17}
+\end{align*}
+If $0<\alpha<1$ then 
+\begin{equation}
+    \mathcal{M}\left[ \leftindex[I]^C{D^\alpha} f(t) \right] = \frac{\Gamma(\alpha-s)}{\Gamma(1-s)} \left[ f(t) t^{s-\alpha} \right]_0^\infty + \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)    
+\end{equation}
+If $f(t)$ and $Re(s)$ are such that all substitutions of the limits $t=0$
+and $t=\infty$ give zero, then the formula takes it's simplest form
+\begin{equation}
+    \mathcal{M}\{D^{\alpha} f(t)\} = \frac{\Gamma(1-s+\alpha)}{\Gamma(1-s)} F(s-\alpha)
+\end{equation}
